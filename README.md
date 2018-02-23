@@ -1,17 +1,7 @@
-My Project
+Vote Purrr Me
 ---
 
 Welcome.
-
-
-Usage
----
-
-Start the development server with this command
-
-```
-npm start
-```
 
 
 Setup
@@ -19,13 +9,7 @@ Setup
 
 ```
 npm install
+npm run react-dev
+npm run server-dev
 ```
 
-
-
-Compile
----
-
-```
-npm run compile
-```
