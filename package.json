@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "webpack",
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +16,10 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "cloudinary-react": "^1.0.6",
     "express": "^4.16.2",
+    "nodemon": "^1.14.11",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "webpack": "^3.10.0",

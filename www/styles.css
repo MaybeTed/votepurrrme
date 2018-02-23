@@ -1,0 +1,125 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.underline {
+	border-bottom: 2px solid black;
+}
+
+/* -------------------
+------- Nav ----------
+--------------------*/
+
+.nav {
+	width: 100%;
+	height: 60px;
+	background: #4286f4;
+}
+
+.nav h3 {
+	font-family: "Lobster Two", times, serif;
+	font-size: 24px;
+	width: 200px;
+	padding: 14px;
+}
+
+.nav-links {
+	font-family: "Lobster Two";
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	height: 60px;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.nav-links li {
+	display: inline-block;
+    padding: 20px 35px
+}
+
+.nav-links li:hover {
+	color: white;
+	cursor: pointer;
+}
+
+/* -------------------
+------- end Nav ------
+--------------------*/
+
+/* -------------------
+------- MainPage -----
+--------------------*/
+
+.main-page {
+	margin-top: 50px;
+}
+
+.title {
+	text-align: center;
+}
+
+.competition-cat {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	width: 700px;
+	margin: auto;
+}
+
+.competition-cat img {
+	width: 280px;
+	height: 500px;
+	cursor: pointer;
+	border: 1px solid black;
+}
+
+/* -------------------
+---- end MainPage ----
+--------------------*/
+
+/* -------------------
+------- Profile ------
+--------------------*/
+
+.profile {
+	margin-top: 50px;
+}
+
+.profile-user {
+	background: #4286f4;
+    width: 300px;
+    height: 400px;
+    margin-left: 50px;
+    overflow: hidden;
+}
+
+.profile-user img {
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	margin: auto;
+	margin-top: 30px;
+	position: relative;
+	display: block;
+}
+
+.profile-user h3, h5 {
+	margin-left: 49px;
+}
+
+.follow-container {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+}
+
+.follow-number {
+	margin-top: 10px;
+}
+
+/* -------------------
+---- end Profile -----
+--------------------*/
