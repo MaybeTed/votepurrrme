@@ -6,9 +6,9 @@ import Nav from './Nav';
 
 class Vote extends React.Component {
 	constructor() {
-		super();
-		this.state = {
-      pictures: [
+	  super();
+	  this.state = {
+        pictures: [
         // 'cats/50_la9sco.jpg',
         // 'cats/49_hazecf.jpg',
         // 'cats/48_yhmfil.jpg',
@@ -62,8 +62,8 @@ class Vote extends React.Component {
         '0_odlzif.jpg'
       ],
       current: []
-		}
-		this.getNewCats = this.getNewCats.bind(this);
+	  }
+	  this.getNewCats = this.getNewCats.bind(this);
 	}
 
 	componentDidMount() {

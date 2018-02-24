@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Nav extends React.Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ class Nav extends React.Component {
 	}
 
 	componentWillReceiveProps() {
-		console.log(this.props.page)
+		console.log('componentWillReceiveProps: ', this.props.page)
 	}
 
 	render() {
@@ -18,9 +19,9 @@ class Nav extends React.Component {
         <div className="nav">
           <h3>Vote Purrr Me</h3>
           <ul className="nav-links">
-            <li onClick={this.props.changeRoute} className={this.props.page === 'Vote' ? 'underline' : null}>Vote</li>
+            <li className={this.props.page === 'Vote' ? 'underline' : null}><Link to="/" onClick={this.props.whichPage}>Vote</Link></li>
             <li>Popular</li>
-            <li onClick={this.props.changeRoute} className={this.props.page === 'Profile' ? 'underline' : null}>Profile</li>
+            <li className={this.props.page === 'Profile' ? 'underline' : null}><Link to="/profile" onClick={this.props.whichPage}>Profile</Link></li>
             <li>Log in</li>
           </ul>
         </div>
