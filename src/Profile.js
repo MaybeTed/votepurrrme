@@ -6,6 +6,10 @@ class Profile extends React.Component {
 		super();
 	}
 
+  componentDidMount() {
+    this.props.whichPage('Profile');
+  }
+
 	render() {
 		return (
       <div className="profile">

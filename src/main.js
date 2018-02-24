@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Nav from './Nav';
 import Vote from './Vote';
 import Profile from './Profile';
+import Popular from './Popular';
 
 class App extends React.Component {
 	constructor() {
@@ -22,9 +23,14 @@ class App extends React.Component {
 	// }
 
 	whichPage(event) {
-    let destination = event.currentTarget.textContent;
+    let destination;
+    if (event.currentTarget) {
+    	destination = event.currentTarget.textContent;
+    } else {
+    	destination = event;
+    }
     console.log('destination: ', destination)
-    this.setState({ page: destination }, () => console.log('this.state.page: ', this.state.page))
+    this.setState({ page: destination });
 	}
 
 	render() {
@@ -33,7 +39,8 @@ class App extends React.Component {
 			  <Nav page={this.state.page} whichPage={this.whichPage} />
 				<Switch className="route-wrapper">
           <Route exact={true} path="/" render={() => (<Vote />)} />
-          <Route path="/profile" render={(props) => (<Profile />)} />
+          <Route path="/profile" render={(props) => (<Profile whichPage={this.whichPage} />)} />
+          <Route path="/popular" render={(props) => (<Popular whichPage={this.whichPage} />)} />
         </Switch>
       </div>
 		)
