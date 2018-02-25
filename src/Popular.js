@@ -11,19 +11,22 @@ class Popular extends React.Component {
           user: 'edward', 
           wins: 117,
           chances: 192,
-          winPercentage: 60
+          winPercentage: 60,
+          image: '31_s3txnc.jpg'
         }, {
           name: 'Monorail Cat',
           user: 'bob', 
           wins: 91,
           chances: 125,
-          winPercentage: 72
+          winPercentage: 72,
+          image: '20_vft97j.jpg'
         }, {
           name: 'Maru',
           user: 'alice', 
           wins: 76,
           chances: 141,
-          winPercentage: 53
+          winPercentage: 53,
+          image: '7_n03l1n.jpg'
         }
       ]
   	}

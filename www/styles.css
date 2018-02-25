@@ -136,9 +136,41 @@ a {
 .popular-item-container {
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 80%;
+	width: 500px;
 	margin: auto;
 	margin-bottom: 15px;
+}
+
+.popular-item-container > * {
+	vertical-align: middle;
+}
+
+.popular-item-info {
+	width: 170px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.popular-item-name {
+	margin-bottom: 0;
+	margin-top: 10px;
+	font-size: 26px;
+}
+
+.popular-item-user {
+	margin-top: 0;
+	margin-left: 5px;
+}
+
+.popular-item-img-container {
+	display: inline-block;
+	border: 1px solid black;
+	margin-left: 120px;
+}
+
+.popular-item-img-container img {
+	width: 170px;
+	height: 220px;
 }
 
 /* -------------------
