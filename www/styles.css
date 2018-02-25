@@ -128,3 +128,19 @@ a {
 /* -------------------
 ---- end Profile -----
 --------------------*/
+
+/* -------------------
+------ Popular -------
+--------------------*/
+
+.popular-item-container {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 80%;
+	margin: auto;
+	margin-bottom: 15px;
+}
+
+/* -------------------
+--- end of Popular ---
+--------------------*/
