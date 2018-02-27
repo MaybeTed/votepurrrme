@@ -40,8 +40,28 @@ class Popular extends React.Component {
   	return (
       <div>
         <h1>Most popular cats</h1>
-        <div>
-          {this.state.popularCats.map((cat, index) => <PopularItem key={index} cat={cat} index={index} />)}
+        <div className="popular-both-containers">
+          <div className="most-popular-cat-container">
+            <div className="most-popular-cat">
+              <div>
+                <h1>#1 {this.state.popularCats[0].name}</h1>
+                <h5> by {this.state.popularCats[0].user}</h5>
+                <h4>Wins: {this.state.popularCats[0].wins}</h4>
+                <h4>Chances: {this.state.popularCats[0].chances}</h4>
+                <h4>Win percentage: {this.state.popularCats[0].winPercentage}</h4>
+              </div>
+              <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.popularCats[0].image}`} />
+            </div>
+          </div>
+          <div className="popular-cats-container">
+            {this.state.popularCats.map((cat, index) => {
+              if (index === 0) {
+                return null;
+              } else {
+                return <PopularItem key={index} cat={cat} index={index} />
+              }
+            })}
+          </div>
         </div>
       </div>
   	)

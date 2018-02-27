@@ -133,12 +133,18 @@ a {
 ------ Popular -------
 --------------------*/
 
+.popular-both-containers {
+	vertical-align: top;
+	display:inline-block;
+	border: 1px solid black;
+}
+
 .popular-item-container {
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 500px;
-	margin: auto;
+	width: 100%;
 	margin-bottom: 15px;
+	display: inline-block;
 }
 
 .popular-item-container > * {
@@ -146,9 +152,9 @@ a {
 }
 
 .popular-item-info {
-	width: 170px;
+	width: 45%;
 	display: inline-block;
-	margin-left: 15px;
+	margin-left: 2%;
 }
 
 .popular-item-name {
@@ -165,12 +171,42 @@ a {
 .popular-item-img-container {
 	display: inline-block;
 	border: 1px solid black;
-	margin-left: 120px;
+    width: 45%;
+    margin-left: 2%;
 }
 
 .popular-item-img-container img {
-	width: 170px;
+	width: 100%;
 	height: 220px;
+}
+
+.most-popular-cat-container {
+	height: 1000px;
+	width: 45%;
+	margin-left: 5%;
+	display: inline-block;
+	border: 2px solid red;
+}
+
+.most-popular-cat {
+	border: 1px solid black;
+	display: inline-block;
+}
+
+.most-popular-cat div {
+	width: 49%;
+	display: inline-block;
+}
+
+.most-popular-cat img {
+	width: 50%;
+}
+
+.popular-cats-container {
+	width: 40%;
+	display: inline-block;
+	border: 2px solid red;
+	margin-left: 5%;
 }
 
 /* -------------------
