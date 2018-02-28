@@ -134,8 +134,9 @@ a {
 --------------------*/
 
 .popular-both-containers {
-	vertical-align: top;
-	display:inline-block;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
 	border: 1px solid black;
 }
 
@@ -181,32 +182,37 @@ a {
 }
 
 .most-popular-cat-container {
-	height: 1000px;
 	width: 45%;
-	margin-left: 5%;
-	display: inline-block;
+/*	margin-left: 5%;*/
+/*	display: inline-block;*/
 	border: 2px solid red;
 }
 
 .most-popular-cat {
 	border: 1px solid black;
-	display: inline-block;
+	width: 100%;
+/*	display: inline-block;*/
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
 .most-popular-cat div {
-	width: 49%;
-	display: inline-block;
+	width: 47%;
+	margin-left: 2%;
+/*	display: inline-block;*/
 }
 
 .most-popular-cat img {
 	width: 50%;
+    height: 600px;
 }
 
 .popular-cats-container {
 	width: 40%;
-	display: inline-block;
+/*	display: inline-block;*/
 	border: 2px solid red;
-	margin-left: 5%;
+/*	margin-left: 5%;*/
 }
 
 /* -------------------
