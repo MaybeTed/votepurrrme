@@ -49,6 +49,7 @@ class Popular extends React.Component {
                 <h4>Wins: {this.state.popularCats[0].wins}</h4>
                 <h4>Chances: {this.state.popularCats[0].chances}</h4>
                 <h4>Win percentage: {this.state.popularCats[0].winPercentage}</h4>
+                <img src="" />
               </div>
               <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.popularCats[0].image}`} />
             </div>
