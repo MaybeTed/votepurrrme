@@ -1,13 +1,6 @@
 import React from 'react';
 
 class PopularItem extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-
-		}
-	}
-
 	render() {
 		return (
       <div className="popular-item-container">

@@ -2,10 +2,6 @@ import React from 'react';
 // import ProfileUser from './'
 
 class Profile extends React.Component {
-	constructor() {
-		super();
-	}
-
   componentDidMount() {
     this.props.whichPage('Profile');
   }

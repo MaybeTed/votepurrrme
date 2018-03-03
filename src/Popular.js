@@ -39,19 +39,19 @@ class Popular extends React.Component {
   render() {
   	return (
       <div>
-        <h1>Most popular cats</h1>
+        <h1 className="popular-title">Most popular cats</h1>
         <div className="popular-both-containers">
           <div className="most-popular-cat-container">
             <div className="most-popular-cat">
-              <div>
+              <div className="most-popular-cat-info">
                 <h1>#1 {this.state.popularCats[0].name}</h1>
                 <h5> by {this.state.popularCats[0].user}</h5>
                 <h4>Wins: {this.state.popularCats[0].wins}</h4>
                 <h4>Chances: {this.state.popularCats[0].chances}</h4>
                 <h4>Win percentage: {this.state.popularCats[0].winPercentage}</h4>
-                <img src="" />
+                <img className="trophy" src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Trophy-and-Medals-PNG/Gold_Cup_Trophy_PNG_Clipart_Image.png?m=1507172109" />
               </div>
-              <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.popularCats[0].image}`} />
+              <img className="num1-cat-img" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.popularCats[0].image}`} />
             </div>
           </div>
           <div className="popular-cats-container">

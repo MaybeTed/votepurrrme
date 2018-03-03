@@ -133,11 +133,15 @@ a {
 ------ Popular -------
 --------------------*/
 
+.popular-title {
+	text-align: center;
+	padding: 40px 0;
+}
+
 .popular-both-containers {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-around;
-	border: 1px solid black;
 }
 
 .popular-item-container {
@@ -183,36 +187,34 @@ a {
 
 .most-popular-cat-container {
 	width: 45%;
-/*	margin-left: 5%;*/
-/*	display: inline-block;*/
-	border: 2px solid red;
 }
 
 .most-popular-cat {
 	border: 1px solid black;
 	width: 100%;
-/*	display: inline-block;*/
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 }
 
-.most-popular-cat div {
+.most-popular-cat-info {
 	width: 47%;
 	margin-left: 2%;
-/*	display: inline-block;*/
 }
 
-.most-popular-cat img {
+.num1-cat-img {
 	width: 50%;
     height: 600px;
 }
 
+.trophy {
+	margin: auto;
+	display: block;
+	height: 300px;
+}
+
 .popular-cats-container {
 	width: 40%;
-/*	display: inline-block;*/
-	border: 2px solid red;
-/*	margin-left: 5%;*/
 }
 
 /* -------------------

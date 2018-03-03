@@ -2,19 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Nav extends React.Component {
-	constructor(props) {
-	  super(props);
-	  this.state = {
-
-	  };
-	}
-
-	componentWillReceiveProps() {
-		console.log('componentWillReceiveProps: ', this.props.page)
-	}
-
 	render() {
-		{console.log('this.props.page: ', this.props.page)}
 	  return (
         <div className="nav">
           <h3>Vote Purrr Me</h3>

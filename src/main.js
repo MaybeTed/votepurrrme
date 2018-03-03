@@ -12,7 +12,7 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-      page: 'Vote'
+          page: 'Vote'
 		}
 		this.whichPage = this.whichPage.bind(this);
 	}
@@ -23,14 +23,13 @@ class App extends React.Component {
 	// }
 
 	whichPage(event) {
-    let destination;
-    if (event.currentTarget) {
-    	destination = event.currentTarget.textContent;
-    } else {
+      let destination;
+      if (event.currentTarget) {
+      	destination = event.currentTarget.textContent;
+      } else {
     	destination = event;
-    }
-    console.log('destination: ', destination)
-    this.setState({ page: destination });
+      }
+      this.setState({ page: destination }, () => console.log('page: ', this.state.page)); 
 	}
 
 	render() {
@@ -38,11 +37,11 @@ class App extends React.Component {
 			<div>
 			  <Nav page={this.state.page} whichPage={this.whichPage} />
 				<Switch className="route-wrapper">
-          <Route exact={true} path="/" render={() => (<Vote />)} />
-          <Route path="/profile" render={(props) => (<Profile whichPage={this.whichPage} />)} />
-          <Route path="/popular" render={(props) => (<Popular whichPage={this.whichPage} />)} />
-        </Switch>
-      </div>
+		          <Route exact={true} path="/" render={() => (<Vote />)} />
+		          <Route path="/profile" render={(props) => (<Profile whichPage={this.whichPage} />)} />
+		          <Route path="/popular" render={(props) => (<Popular whichPage={this.whichPage} />)} />
+		        </Switch>
+		      </div>
 		)
 	}
 }
