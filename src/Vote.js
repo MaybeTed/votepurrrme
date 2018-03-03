@@ -76,7 +76,7 @@ class Vote extends React.Component {
       const pic1 = pictures.splice(index, 1);
       const index2 = Math.floor(Math.random() * pictures.length);
       const pic2 = pictures.splice(index2, 1);
-      this.setState({ current: [pic1, pic2] }, () => console.log(this.state.current));
+      this.setState({ current: [pic1, pic2] });
 	}
 
 	render() {

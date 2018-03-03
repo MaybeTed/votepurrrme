@@ -1,17 +1,31 @@
 
 import React from 'react';
+import 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
+import promise from 'redux-promise';
+import logger from 'redux-logger';
 import axios from 'axios';
+import store from '../store';
+import reducer from './reducers';
 import Nav from './Nav';
 import Vote from './Vote';
 import Profile from './Profile';
 import Popular from './Popular';
+import Actions from './actions/index';
+
+function mapStateToProps(state) {
+	return {
+		auth: state.auth
+	}
+}
 
 class App extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
           page: 'Vote'
 		}
@@ -19,13 +33,7 @@ class App extends React.Component {
 	}
 
     componentDidMount() {
-    	this.checkAuth();
-    }
-
-    checkAuth() {
-    	console.log('checkAuth running');
-    	axios.get('/auth/verify')
-    	  .then((data) => console.log('data: ', data))
+    	Actions.fetchUser();
     }
 
 	whichPage(event) {
@@ -35,7 +43,7 @@ class App extends React.Component {
       } else {
     	destination = event;
       }
-      this.setState({ page: destination }, () => console.log('page: ', this.state.page)); 
+      this.setState({ page: destination }); 
 	}
 
 	render() {
@@ -52,11 +60,16 @@ class App extends React.Component {
 	}
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
 	ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>, 
+	<Provider store={store}>	
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>, 
     document.getElementById('mount')
 	);
 });
+
+export default connect(mapStateToProps)(App);
