@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import Nav from './Nav';
 import Vote from './Vote';
 import Profile from './Profile';
@@ -17,10 +18,15 @@ class App extends React.Component {
 		this.whichPage = this.whichPage.bind(this);
 	}
 
-	// isHomepage(event) {
- //    let destination = event.currentTarget.textContent;
- //    this.setState({ page: destination })
-	// }
+    componentDidMount() {
+    	this.checkAuth();
+    }
+
+    checkAuth() {
+    	console.log('checkAuth running');
+    	axios.get('/auth/verify')
+    	  .then((data) => console.log('data: ', data))
+    }
 
 	whichPage(event) {
       let destination;
