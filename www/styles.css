@@ -12,6 +12,10 @@ a {
 	border-bottom: 2px solid;
 }
 
+.hide {
+	display: none;
+}
+
 /* -------------------
 ------- Nav ----------
 --------------------*/
@@ -91,6 +95,7 @@ a {
 
 .profile {
 	margin-top: 50px;
+	border: 1px solid black;
 }
 
 .profile-user {
@@ -99,6 +104,7 @@ a {
     height: 400px;
     margin-left: 50px;
     overflow: hidden;
+    border: 1px solid red;
 }
 
 .profile-user img {
@@ -121,8 +127,21 @@ a {
 	justify-content: space-around;
 }
 
+.follow-name {
+	cursor: pointer;
+}
+
 .follow-number {
 	margin-top: 10px;
+	cursor: pointer;
+}
+
+.profile-friends {
+	background: #4286f4;
+    width: 300px;
+    min-height: 300px;
+    margin-left: 50px;
+    margin-top: 50px;
 }
 
 /* -------------------
