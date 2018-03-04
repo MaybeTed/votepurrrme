@@ -63,6 +63,11 @@ app.get('/auth/verify', (req, res) => {
 	}
 });
 
+app.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });
