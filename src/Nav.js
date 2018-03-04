@@ -16,8 +16,16 @@ class Nav extends React.Component {
           <ul className="nav-links">
             <li className={this.props.page === 'Vote' ? 'underline' : null}><Link to="/" onClick={this.props.whichPage}>Vote</Link></li>
             <li className={this.props.page === 'Popular' ? 'underline' : null}><Link to="/popular" onClick={this.props.whichPage}>Popular</Link></li>
-            <li className={this.props.page === 'Profile' ? 'underline' : null}><Link to="/profile" onClick={this.props.whichPage}>Profile</Link></li>
-            <li><a href="/auth/google">Log in</a></li>
+            {this.props.auth ?
+              <li className={this.props.page === 'Profile' ? 'underline' : null}><Link to="/profile" onClick={this.props.whichPage}>Profile</Link></li>
+            :
+              null
+            }
+            {this.props.auth ?
+              <li><a href="/logout">Log out</a></li>
+            :
+              <li><a href="/auth/google">Log in</a></li>
+            }
           </ul>
         </div>
 	  );
