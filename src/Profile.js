@@ -1,5 +1,11 @@
 import React from 'react';
-// import ProfileUser from './'
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
 
 class Profile extends React.Component {
   constructor(props) {
@@ -37,11 +43,16 @@ class Profile extends React.Component {
   }
 
 	render() {
+    const { auth } = this.props;
+
+    if (!auth) {
+      return <div>Loading...</div>;
+    }
 		return (
       <div className="profile">
         <section className="profile-user">
-          <img src="" />
-          <h3>Display name here</h3>
+          <img src={auth.photos[0].value} />
+          <h3>{auth.displayName}</h3>
           <h5>Display reputation here</h5>
           <div className="follow-container">
             <div>
@@ -64,4 +75,4 @@ class Profile extends React.Component {
 	}
 }
 
-export default Profile;
+export default connect(mapStateToProps)(Profile);
