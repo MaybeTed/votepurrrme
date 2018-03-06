@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const db = require('./database/db');
+const insert = require('./database/inserts');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -51,7 +53,9 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'prof
 
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
 	(req, res) => {
-		console.log('req.user: ', req.user);
+		insert.user(req.user)
+		  .then(() => console.log(`inserted ${req.user.displayName} into database`))
+		  .catch((err) => console.log(`didn't insert ${req.user.displayName} into db, error: `, err))
     	res.redirect('/');
 });
 
