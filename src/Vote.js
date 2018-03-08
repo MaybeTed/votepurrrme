@@ -31,6 +31,10 @@ class Vote extends React.Component {
         // send winner and loser to database
         console.log('winner: ', winner);
         console.log('loser: ', loser);
+        axios.post('/api/vote', {
+            winner,
+            loser
+        })
       }
       if (this.props.cats.length) {
 	    const index = Math.floor(Math.random() * this.props.cats.length);
