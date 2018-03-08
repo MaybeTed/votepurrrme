@@ -73,16 +73,15 @@ app.get('/logout', (req, res) => {
 	res.redirect('/');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/www/index.html'));
-});
-
 app.get('/api/getCats', (req, res) => {
   query.cats()
     .then((data) => {
-    	console.log('data from cats query: ', data);
     	res.send(data);
     })
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/www/index.html'));
 });
 
 const server = app.listen(3000, '127.0.0.1',  function() {

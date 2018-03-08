@@ -19,7 +19,8 @@ import Actions from './actions/index';
 
 function mapStateToProps(state) {
 	return {
-		auth: state.auth
+		auth: state.auth,
+		cats: state.cats
 	}
 }
 
@@ -34,6 +35,7 @@ class App extends React.Component {
 
     componentDidMount() {
     	Actions.fetchUser();
+    	Actions.fetchCats();
     }
 
 	whichPage(event) {
@@ -51,7 +53,7 @@ class App extends React.Component {
 			<div>
 			  <Nav page={this.state.page} whichPage={this.whichPage} />
 				<Switch className="route-wrapper">
-		          <Route exact={true} path="/" render={() => (<Vote />)} />
+		          <Route exact={true} path="/" render={(props) => (<Vote />)} />
 		          <Route path="/profile" render={(props) => (<Profile whichPage={this.whichPage} />)} />
 		          <Route path="/popular" render={(props) => (<Popular whichPage={this.whichPage} />)} />
 		        </Switch>
@@ -72,4 +74,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	);
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { Actions })(App);

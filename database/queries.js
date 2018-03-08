@@ -5,7 +5,7 @@ const users = name => name
   : knex('users').select();
 
 const cats = id => id
-  ? knex('cats').where('id'), id).select()
+  ? knex('cats').where('id', id).select()
   : knex('cats').select();
 
 module.exports = {

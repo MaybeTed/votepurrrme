@@ -2,7 +2,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+import { connect } from 'react-redux';
 import Nav from './Nav';
+
+function mapStateToProps(state) {
+    return {
+        auth: state.auth,
+        cats: state.cats
+    }
+}
 
 class Vote extends React.Component {
 	constructor() {
@@ -80,6 +88,9 @@ class Vote extends React.Component {
 	}
 
 	render() {
+        if (!this.props.cats.length) {
+            return <div>Loading...</div>
+        }
 		return (
 			<div>
     	      <div className="main-page">
@@ -94,4 +105,4 @@ class Vote extends React.Component {
 	}
 }
 
-export default Vote;
+export default connect(mapStateToProps)(Vote);
