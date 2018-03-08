@@ -16,6 +16,6 @@ module.exports = {
       password: process.env.DATABASE_PASSWORD || config.password,
       database: process.env.DATABASE_NAME || 'votepurrrme',
     }
-  },
+  }
 
 };

@@ -2,17 +2,17 @@ import React from 'react';
 
 class PopularItem extends React.Component {
 	render() {
+    const { name, url, wins, chances } = this.props.cat;
 		return (
       <div className="popular-item-container">
         <div className="popular-item-info">
-          <h3 className="popular-item-name">#{this.props.index + 1} {this.props.cat.name}</h3>
-          <h5 className="popular-item-user">by {this.props.cat.user}</h5>
-          <h5>Wins: {this.props.cat.wins}</h5>
-          <h5>Chances: {this.props.cat.chances}</h5>
-          <h5>Win Percentage: {this.props.cat.winPercentage}</h5>
+          <h3 className="popular-item-name">#{this.props.index + 1} {name}</h3>
+          <h5>Wins: {wins}</h5>
+          <h5>Chances: {chances}</h5>
+          <h5>Win Percentage: {(wins/chances*100).toFixed(0) + '%'}</h5>
         </div>
         <div className="popular-item-img-container">
-          <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.props.cat.image}`} />
+          <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${url}`} />
         </div>
       </div>
 		)

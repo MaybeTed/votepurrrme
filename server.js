@@ -13,6 +13,8 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const db = require('./database/db');
 const insert = require('./database/inserts');
+const query = require('./database/queries');
+const update = require('./database/updates');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -70,6 +72,22 @@ app.get('/auth/verify', (req, res) => {
 app.get('/logout', (req, res) => {
 	req.logout();
 	res.redirect('/');
+});
+
+app.get('/api/getCats', (req, res) => {
+	if (req.query && req.query.rank === 'rank') {
+		query.rankCats()
+		  .then((data) => res.send(data));
+	} else {
+      query.cats()
+        .then((data) => res.send(data));
+    }
+});
+
+app.post('/api/vote', (req, res) => {
+  update.winner(req.body.winner.id);
+  update.loser(req.body.loser.id);
+  res.end();
 });
 
 app.get('*', (req, res) => {
