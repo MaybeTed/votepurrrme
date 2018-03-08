@@ -8,7 +8,12 @@ const cats = id => id
   ? knex('cats').where('id', id).select()
   : knex('cats').select();
 
+const rankCats = () => knex('cats')
+  .select()
+  .orderBy('wins', 'desc');
+
 module.exports = {
 	users,
-	cats
+	cats,
+	rankCats
 };

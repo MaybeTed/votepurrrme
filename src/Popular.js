@@ -1,5 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PopularItem from './PopularItem';
+import Actions from './actions';
+
+function mapStateToProps(state) {
+  return {
+    cats: state.cats
+  }
+}
 
 class Popular extends React.Component {
   constructor() {
@@ -34,9 +42,14 @@ class Popular extends React.Component {
 
   componentDidMount() {
   	this.props.whichPage('Popular');
+    Actions.fetchCats('rank');
   }
 
   render() {
+    if (!this.props.cats.length) {
+      return <div>Loading...</div>
+    }
+    const { name, url, wins, chances } = this.props.cats[0];
   	return (
       <div>
         <h1 className="popular-title">Most popular cats</h1>
@@ -44,18 +57,17 @@ class Popular extends React.Component {
           <div className="most-popular-cat-container">
             <div className="most-popular-cat">
               <div className="most-popular-cat-info">
-                <h1>#1 {this.state.popularCats[0].name}</h1>
-                <h5> by {this.state.popularCats[0].user}</h5>
-                <h4>Wins: {this.state.popularCats[0].wins}</h4>
-                <h4>Chances: {this.state.popularCats[0].chances}</h4>
-                <h4>Win percentage: {this.state.popularCats[0].winPercentage}</h4>
+                <h1>#1 {name}</h1>
+                <h4>Wins: {wins}</h4>
+                <h4>Chances: {chances}</h4>
+                <h4>Win percentage: {(wins/chances*100).toFixed(0) + '%'}</h4>
                 <img className="trophy" src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Trophy-and-Medals-PNG/Gold_Cup_Trophy_PNG_Clipart_Image.png?m=1507172109" />
               </div>
-              <img className="num1-cat-img" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.popularCats[0].image}`} />
+              <img className="num1-cat-img" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${url}`} />
             </div>
           </div>
           <div className="popular-cats-container">
-            {this.state.popularCats.map((cat, index) => {
+            {this.props.cats.map((cat, index) => {
               if (index === 0) {
                 return null;
               } else {
@@ -69,4 +81,4 @@ class Popular extends React.Component {
   }
 }
 
-export default Popular;
+export default connect(mapStateToProps)(Popular);

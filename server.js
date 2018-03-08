@@ -75,10 +75,13 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/api/getCats', (req, res) => {
-  query.cats()
-    .then((data) => {
-    	res.send(data);
-    })
+	if (req.query && req.query.rank === 'rank') {
+		query.rankCats()
+		  .then((data) => res.send(data));
+	} else {
+      query.cats()
+        .then((data) => res.send(data));
+    }
 });
 
 app.post('/api/vote', (req, res) => {
