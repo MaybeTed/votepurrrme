@@ -13,6 +13,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const db = require('./database/db');
 const insert = require('./database/inserts');
+const query = require('./database/queries');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
