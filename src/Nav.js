@@ -14,6 +14,12 @@ class Nav extends React.Component {
         <div className="nav">
           <h3>Vote Purrr Me</h3>
           <ul className="nav-links">
+            <li>
+              <input className="search-input" placeholder="Search" />
+              <button className="search-button">
+                <img className="search-icon" src="http://www.portablecoolers.com/mobile/images/search.png" />
+              </button>
+            </li>
             <li className={this.props.page === 'Vote' ? 'underline' : null}><Link to="/" onClick={this.props.whichPage}>Vote</Link></li>
             <li className={this.props.page === 'Popular' ? 'underline' : null}><Link to="/popular" onClick={this.props.whichPage}>Popular</Link></li>
             {this.props.auth ?

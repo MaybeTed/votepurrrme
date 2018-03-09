@@ -59,6 +59,20 @@ a {
 	cursor: pointer;
 }
 
+.search-input {
+	height: 23px;
+}
+
+.search-button {
+	width: 30px;
+	height: 23px;
+	margin-left: 5px;
+}
+
+.search-icon {
+	width: 10px;
+}
+
 /* -------------------
 ------- end Nav ------
 --------------------*/
