@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,6 +10,21 @@ const mapStateToProps = (state) => {
 }
 
 class Nav extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+
+    }
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch() {
+    let query = document.getElementsByClassName('search-input')[0].value);
+    axios.get(`/api/search?query=${query}`)
+      .then((results) => console.log('search results: ', results))
+  }
+
 	render() {
 	  return (
         <div className="nav">
@@ -16,7 +32,7 @@ class Nav extends React.Component {
           <ul className="nav-links">
             <li>
               <input className="search-input" placeholder="Search" />
-              <button className="search-button">
+              <button className="search-button" onClick={this.handleSearch} >
                 <img className="search-icon" src="http://www.portablecoolers.com/mobile/images/search.png" />
               </button>
             </li>
