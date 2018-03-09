@@ -21,7 +21,7 @@ class Nav extends React.Component {
 
   handleSearch() {
     let query = document.getElementsByClassName('search-input')[0].value);
-    axios.get(`/api/search?query=${query}`)
+    axios.get(`/api/search?input=${query}`)
       .then((results) => console.log('search results: ', results))
   }
 

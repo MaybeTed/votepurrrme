@@ -84,6 +84,20 @@ app.get('/api/getCats', (req, res) => {
     }
 });
 
+app.get('/api/search', (req, res) => {
+  if (req.query) {
+  	query.searchUsers(req.query.input)
+  	  .then((users) => {
+  	  	query.searchCats(req.query.input)
+  	  	  .then((cats) => {
+  	  	  	res.send({ users, cats });
+  	  	  });
+  	  });
+  } else {
+  	res.end();
+  }
+});
+
 app.post('/api/vote', (req, res) => {
   update.winner(req.body.winner.id);
   update.loser(req.body.loser.id);
