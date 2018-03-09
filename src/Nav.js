@@ -33,7 +33,7 @@ class Nav extends React.Component {
       url = `/cat/${result.id}`;
     } else {
       // we know it's a user
-      url = `/user/${result.id}`;
+      url = `/profile/${result.id}`;
     }
 
     return <Link to={url} key={i} onClick={this.deleteSearchResults}><div className="search-result">{result.name}</div></Link>
@@ -66,7 +66,7 @@ class Nav extends React.Component {
             <Link to="/" className="link" onClick={this.props.whichPage}><li className={this.props.page === 'Vote' ? 'underline' : null}>Vote</li></Link>
             <Link to="/popular" className="link" onClick={this.props.whichPage}><li className={this.props.page === 'Popular' ? 'underline' : null}>Popular</li></Link>
             {this.props.auth ?
-              <Link to="/profile" className="link" onClick={this.props.whichPage}><li className={this.props.page === 'Profile' ? 'underline' : null}>Profile</li></Link>
+              <Link to={`/profile/${this.props.auth.id}`} className="link" onClick={this.props.whichPage}><li className={this.props.page === 'Profile' ? 'underline' : null}>Profile</li></Link>
             :
               null
             }

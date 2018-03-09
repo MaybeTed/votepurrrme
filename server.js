@@ -56,14 +56,20 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'prof
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
 	(req, res) => {
 		insert.user(req.user)
-		  .then(() => console.log(`inserted ${req.user.displayName} into database`))
-		  .catch((err) => console.log(`didn't insert ${req.user.displayName} into db, error: `, err))
+		  .then(() => {
+		  	console.log(`inserted ${req.user.displayName} into database`);
+		  })
+		  .catch((err) => {
+		  	console.log(`didn't insert ${req.user.displayName} into db, probably because theyre already in there`);
+		  })
     	res.redirect('/');
 });
 
 app.get('/auth/verify', (req, res) => {
 	if (req.user) {
-		res.send(req.user);
+		console.log('req.user: ', req.user)
+		query.users(req.user.displayName)
+		  .then((user) => res.send(user[0]))
 	} else {
 		res.send(null);
 	}
@@ -93,6 +99,11 @@ app.get('/api/search', (req, res) => {
   	  	  	res.send({ users, cats });
   	  	  });
   	  });
+});
+
+app.get('/api/getuser', (req, res) => {
+	query.userid(req.query.id)
+	  .then((user) => res.send(user[0]))
 });
 
 app.post('/api/vote', (req, res) => {
