@@ -17,6 +17,15 @@ a {
 	display: none;
 }
 
+.link:hover {
+	color: white;
+	cursor: pointer;
+}
+
+.link:hover .underline {
+	border-bottom: 2px solid white;
+}
+
 /* -------------------
 ------- Nav ----------
 --------------------*/
@@ -54,13 +63,27 @@ a {
     padding: 19px 35px
 }
 
-.nav-links li:hover {
-	color: white;
-	cursor: pointer;
-}
-
 .search-input {
 	height: 23px;
+}
+
+.search-results-container {
+  position: fixed;
+  top: 42px;
+  right: 390px;
+  width: 122px;
+  background: #4286f4;
+}
+
+.search-result {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.search-result:hover {
+	color: white;
+	font-size: 1.1em;
+	cursor: pointer;
 }
 
 .search-button {
