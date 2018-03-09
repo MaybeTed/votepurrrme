@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 function mapStateToProps(state) {
   return {
@@ -12,7 +13,12 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       showFriends: false,
-      followers: true
+      followers: true,
+      person: {
+        id: 1,
+        name: 'Sample Data',
+        photo: 'https://www.flooringvillage.co.uk/ekmps/shops/flooringvillage/images/request-a-sample--547-p.jpg'
+      }
     }
 
     this.showFollowing = this.showFollowing.bind(this);
@@ -20,6 +26,8 @@ class Profile extends React.Component {
   }
   componentDidMount() {
     this.props.whichPage('Profile');
+    axios.get(`/api/getuser?id=${this.props.match.params.id}`)
+      .then((user) => this.setState({ person: user.data }))
   }
 
   showFollowers() {
@@ -43,16 +51,12 @@ class Profile extends React.Component {
   }
 
 	render() {
-    const { auth } = this.props;
-
-    if (!auth) {
-      return <div>Loading...</div>;
-    }
+    const { person } = this.state;
 		return (
       <div className="profile">
         <section className="profile-user">
-          <img src={auth.photos[0].value} />
-          <h3>{auth.displayName}</h3>
+          <img src={person.photo} />
+          <h3>{person.name}</h3>
           <h5>Display reputation here</h5>
           <div className="follow-container">
             <div>

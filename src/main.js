@@ -53,9 +53,9 @@ class App extends React.Component {
 			<div>
 			  <Nav page={this.state.page} whichPage={this.whichPage} />
 				<Switch className="route-wrapper">
-		          <Route exact={true} path="/" render={(props) => (<Vote />)} />
-		          <Route path="/profile" render={(props) => (<Profile whichPage={this.whichPage} />)} />
-		          <Route path="/popular" render={(props) => (<Popular whichPage={this.whichPage} />)} />
+		          <Route exact={true} path="/" render={(props) => (<Vote {...props} />)} />
+		          <Route path="/profile/:id" render={(props) => (<Profile {...props} whichPage={this.whichPage} />)} />
+		          <Route path="/popular" render={(props) => (<Popular {...props} whichPage={this.whichPage} />)} />
 		        </Switch>
 		      </div>
 		)
