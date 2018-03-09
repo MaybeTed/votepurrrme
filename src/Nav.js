@@ -13,16 +13,20 @@ class Nav extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      searchResults: []
     }
 
     this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSearch() {
-    let query = document.getElementsByClassName('search-input')[0].value);
+    let query = document.getElementsByClassName('search-input')[0].value;
     axios.get(`/api/search?input=${query}`)
-      .then((results) => console.log('search results: ', results))
+      .then((results) => {
+        console.log('search results: ', results.data)
+        let searchResults = [].concat(results.data.users, results.data.cats);
+        this.setState({ searchResults });
+      })
   }
 
 	render() {

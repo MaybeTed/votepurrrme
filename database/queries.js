@@ -12,8 +12,18 @@ const rankCats = () => knex('cats')
   .select()
   .orderBy('wins', 'desc');
 
+const searchUsers = q => knex('users')
+  .where(knex.raw(`lower(name) like lower('${q}')`))
+  .select()
+
+const searchCats = q => knex('cats')
+  .where(knex.raw(`lower(name) like lower('${q}')`))
+  .select()
+
 module.exports = {
 	users,
 	cats,
-	rankCats
+	rankCats,
+	searchUsers,
+	searchCats
 };

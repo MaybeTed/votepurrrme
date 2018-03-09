@@ -85,17 +85,14 @@ app.get('/api/getCats', (req, res) => {
 });
 
 app.get('/api/search', (req, res) => {
-  if (req.query) {
-  	query.searchUsers(req.query.input)
+  const q = `%${req.query.input}%`;
+  	query.searchUsers(q)
   	  .then((users) => {
-  	  	query.searchCats(req.query.input)
+  	  	query.searchCats(q)
   	  	  .then((cats) => {
   	  	  	res.send({ users, cats });
   	  	  });
   	  });
-  } else {
-  	res.end();
-  }
 });
 
 app.post('/api/vote', (req, res) => {
