@@ -15,6 +15,7 @@ import Nav from './Nav';
 import Vote from './Vote';
 import Profile from './Profile';
 import Popular from './Popular';
+import Cat from './Cat';
 import Actions from './actions/index';
 
 function mapStateToProps(state) {
@@ -55,6 +56,7 @@ class App extends React.Component {
 				<Switch className="route-wrapper">
 		          <Route exact={true} path="/" render={(props) => (<Vote {...props} />)} />
 		          <Route path="/profile/:id" render={(props) => (<Profile {...props} whichPage={this.whichPage} />)} />
+		          <Route path="/cat/:id" render={(props) => (<Cat {...props} whichPage={this.whichPage} />)} />
 		          <Route path="/popular" render={(props) => (<Popular {...props} whichPage={this.whichPage} />)} />
 		        </Switch>
 		      </div>

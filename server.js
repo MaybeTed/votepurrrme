@@ -106,6 +106,11 @@ app.get('/api/getuser', (req, res) => {
 	  .then((user) => res.send(user[0]))
 });
 
+app.get('/api/getcat', (req, res) => {
+	query.cats(req.query.id)
+	  .then((cat) => res.send(cat[0]))
+});
+
 app.post('/api/vote', (req, res) => {
   update.winner(req.body.winner.id);
   update.loser(req.body.loser.id);
