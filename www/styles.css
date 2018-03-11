@@ -280,7 +280,11 @@ a {
 }
 
 .trophy {
-	margin: auto;
+/*	margin: auto;*/
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
+    bottom: 50px;
 	display: block;
 	height: 300px;
 }
