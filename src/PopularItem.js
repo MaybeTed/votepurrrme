@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class PopularItem extends React.Component {
 	render() {
     const { name, url, wins, chances } = this.props.cat;
 		return (
-      <div className="popular-item-container">
+      <Link to={`/cat/${this.props.cat.id}`} ><div className="popular-item-container">
         <div className="popular-item-info">
           <h3 className="popular-item-name">#{this.props.index + 1} {name}</h3>
           <h5>Wins: {wins}</h5>
@@ -14,7 +15,7 @@ class PopularItem extends React.Component {
         <div className="popular-item-img-container">
           <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${url}`} />
         </div>
-      </div>
+      </div></Link>
 		)
 	}
 }
