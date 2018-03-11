@@ -14,8 +14,18 @@ class Cat extends React.Component {
       	chances: 0
       }
   	}
+    this.getCat = this.getCat.bind(this);
   }
+
   componentDidMount() {
+    this.getCat();
+  }
+
+  componentDidUpdate() {
+    this.getCat();
+  }
+
+  getCat() {
     axios.get(`/api/getcat?id=${this.props.match.params.id}`)
       .then((cat) => this.setState({ cat: cat.data }))
   }

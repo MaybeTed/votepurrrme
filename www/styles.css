@@ -79,6 +79,10 @@ a {
   background: #4286f4;
 }
 
+.logged-in-results {
+	right: 505px;
+}
+
 .search-result {
   border: 1px solid black;
   padding: 2px;
