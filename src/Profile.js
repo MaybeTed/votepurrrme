@@ -21,11 +21,20 @@ class Profile extends React.Component {
       }
     }
 
+    this.getPerson = this.getPerson.bind(this);
     this.showFollowing = this.showFollowing.bind(this);
     this.showFollowers = this.showFollowers.bind(this);
   }
   componentDidMount() {
     this.props.whichPage('Profile');
+    this.getPerson();
+  }
+
+  componentDidUpdate() {
+    this.getPerson();
+  }
+
+  getPerson() {
     axios.get(`/api/getuser?id=${this.props.match.params.id}`)
       .then((user) => this.setState({ person: user.data }))
   }

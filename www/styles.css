@@ -13,6 +13,10 @@ a {
 	border-bottom: 2px solid;
 }
 
+.indent {
+	margin-left: 1em;
+}
+
 .hide {
 	display: none;
 }
@@ -73,6 +77,10 @@ a {
   right: 390px;
   width: 122px;
   background: #4286f4;
+}
+
+.logged-in-results {
+	right: 505px;
 }
 
 .search-result {
@@ -272,7 +280,11 @@ a {
 }
 
 .trophy {
-	margin: auto;
+/*	margin: auto;*/
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
+    bottom: 50px;
 	display: block;
 	height: 300px;
 }
@@ -291,13 +303,77 @@ a {
 
 .cat-page {
 	margin-top: 100px;
-	width: 400px;
+	width: 100%;
 	height: 400px;
-	background: orange;
+	display: flex;
+	justify-content: space-around;
+}
+
+.cat-left-container {
+	width: 42%;
+}
+
+.cat-right-container {
+	width: 42%;
+}
+
+.leave-comment-container {
+	padding: 10px;
+	border: 2px dashed black;
+}
+
+.leave-comment-container button {
+	position: relative;
+	bottom: 5px;
+	left: 3px;
+}
+
+.cat-info {
+	border: 3px solid black;
+	border-radius: 15px;
+	padding-bottom: 20px;
+}
+
+.cat-info h2 {
+	font-size: 30px;
+	text-align: center;
+}
+
+.stats {
+	display: flex;
+	justify-content: space-around;
+}
+
+.cat-page-cat-image {
+	margin-top: 20px;
+	border: 1px solid black;
+	border-radius: 15px;
+	width: 100%;
 }
 
 /* -------------------
 ----- end of Cat -----
+--------------------*/
+
+/* -------------------
+----- CatComment -----
+--------------------*/
+
+.cat-comment {
+	border: 1px solid black;
+	border-radius: 15px;
+	margin-top: 25px;
+	padding: 5px 10px;
+}
+
+.username {
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #f44242;
+}
+
+/* -------------------
+-- end of CatComment -
 --------------------*/
 
 

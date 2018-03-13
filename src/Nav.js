@@ -56,7 +56,7 @@ class Nav extends React.Component {
           <ul className="nav-links">
             <li>
               <input className="search-input" placeholder="Search" />
-              <div className={this.state.searchResults.length === 0 ? "search-results-container hide" : "search-results-container"}>
+              <div className={this.state.searchResults.length === 0 ? "search-results-container hide" : this.props.auth ? "search-results-container logged-in-results" : "search-results-container"}>
                 {this.state.searchResults.map((item, i) => this.displaySearchResults(item, i))}
               </div>
               <button className="search-button" onClick={this.handleSearch} >
