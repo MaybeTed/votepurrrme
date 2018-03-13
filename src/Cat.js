@@ -48,7 +48,7 @@ class Cat extends React.Component {
       <section className="cat-right-container">
         <div className="leave-comment-container">
           <p>Leave a comment</p>
-          <input />
+          <textarea cols="30" rows="4" />
           <button>Submit</button>
         </div>
         <CatComment />
