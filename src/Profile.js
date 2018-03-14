@@ -43,7 +43,9 @@ class Profile extends React.Component {
 
   getPerson() {
     axios.get(`/api/getuser?id=${this.props.match.params.id}`)
-      .then((user) => this.setState({ person: user.data }))
+      .then((user) => {
+        this.setState({ person: user.data.user, comments: user.data.comments })
+      })
   }
 
   showFavorites(e) {
@@ -110,7 +112,7 @@ class Profile extends React.Component {
           {this.state.showFavorites ?
             <ProfileFavorites />
             :
-            <ProfileComments />
+            <ProfileComments comments={this.state.comments} />
           }
         </div>
       </div>

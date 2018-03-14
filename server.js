@@ -101,8 +101,16 @@ app.get('/api/search', (req, res) => {
 });
 
 app.get('/api/getuser', (req, res) => {
-	query.userid(req.query.id)
-	  .then((user) => res.send(user[0]))
+	console.log('req.query.id: ', req.query.id)
+	if (req.query.id) {
+		query.userid(req.query.id).then((user) => {
+			query.userComments(req.query.id).then((comments) => {
+				res.send({ user: user[0], comments });
+			})
+		})
+	} else {
+		res.end();
+	}
 });
 
 app.get('/api/getcat', (req, res) => {

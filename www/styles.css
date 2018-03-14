@@ -145,13 +145,11 @@ a {
 
 .profile {
 	margin-top: 150px;
-	border: 1px solid black;
 	display: flex;
 	justify-content: space-between;
 }
 
 .profile-left-container {
-	border: 1px solid black;
 	width: 35%;
 }
 
@@ -161,7 +159,6 @@ a {
     height: 400px;
     margin-left: 50px;
     overflow: hidden;
-    border: 1px solid red;
 }
 
 .profile-user img {
@@ -202,7 +199,6 @@ a {
 }
 
 .profile-right-container {
-	border: 1px solid black;
 	width: 60%;
 }
 
@@ -237,6 +233,31 @@ a {
 	border: 1px solid black;
 	z-index: 1;
 	margin-top: -1px;
+	padding-bottom: 20px;
+	min-height: 350px;
+}
+
+.mycomments-container {
+	border: 1px solid black;
+	border-radius: 10px;
+	width: 90%;
+	margin: auto;
+	margin-top: 20px;
+	display: flex;
+}
+
+.profile-comment-info {
+	width: 75%;
+	display: inline-block;
+}
+
+.profile-cat-img {
+	display: inline-block;
+	width: 24%;
+}
+
+.profile-cat-img img {
+	width: 100%;
 }
 
 
