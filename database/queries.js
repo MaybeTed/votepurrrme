@@ -28,6 +28,7 @@ const searchCats = q => knex('cats')
 const catComments = cat => knex('comments')
   .where('cat_id', cat)
   .join('users', 'comments.user_id', '=', 'users.id')
+  .orderBy('id', 'desc')
   .select('comments.*', 'users.name')
 
 const userComments = user => knex('comments')
