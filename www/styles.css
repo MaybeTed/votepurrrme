@@ -146,6 +146,13 @@ a {
 .profile {
 	margin-top: 150px;
 	border: 1px solid black;
+	display: flex;
+	justify-content: space-between;
+}
+
+.profile-left-container {
+	border: 1px solid black;
+	width: 35%;
 }
 
 .profile-user {
@@ -193,6 +200,45 @@ a {
     margin-left: 50px;
     margin-top: 50px;
 }
+
+.profile-right-container {
+	border: 1px solid black;
+	width: 60%;
+}
+
+.my-options {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-left: 20px;
+}
+
+.my-options div {
+	padding: 5px;
+	font-family: helvetica;
+	font-weight: bold;
+	color: #4286f4;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-radius: 7px 7px 0 0;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.white-underline {
+	border-bottom: 3px solid white;
+}
+
+.black-underline {
+	border: 1px solid black;
+}
+
+.folder {
+	border: 1px solid black;
+	z-index: 1;
+	margin-top: -1px;
+}
+
 
 /* -------------------
 ---- end Profile -----
