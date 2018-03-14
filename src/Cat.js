@@ -54,8 +54,9 @@ class Cat extends React.Component {
       let userid = this.props.auth.id;
       let catid = this.state.cat.id;
       axios.post('/api/addComment', { message, userid, catid })
-        .then(() => console.log('sent comment to server'))
-        .catch(() => console.log('error sending message to server'))
+        .then(() => this.getCat())
+        .catch(() => console.log('error sending message to server'));
+      document.getElementById('comment').value = '';
     } else {
       alert('Please log in if you would like to comment');
     }
