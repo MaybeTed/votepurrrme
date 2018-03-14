@@ -6,6 +6,13 @@ const user = data => knex('users').insert({
   email: data.email
 });
 
+const comment = data => knex('comments').insert({
+	message: data.message,
+	user_id: data.userid,
+	cat_id: data.catid
+});
+
 module.exports = {
 	user,
+	comment
 }

@@ -25,11 +25,16 @@ const searchCats = q => knex('cats')
   .where(knex.raw(`lower(name) like lower('${q}')`))
   .select()
 
+const catComments = cat => knex('comments')
+  .where('cat_id', cat)
+  .select()
+
 module.exports = {
 	users,
 	userid,
 	cats,
 	rankCats,
 	searchUsers,
-	searchCats
+	searchCats,
+  catComments
 };
