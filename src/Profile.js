@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import ProfileFavorites from './ProfileFavorites';
 import ProfileComments from './ProfileComments';
+import Followers from './Followers';
+import Following from './Following';
 
 function mapStateToProps(state) {
   return {
@@ -59,7 +61,8 @@ class Profile extends React.Component {
           person: user.data.user,
           comments: user.data.comments,
           followers: user.data.followers,
-          following: user.data.following
+          following: user.data.following,
+          showFriends: false,
         })
       })
   }
@@ -122,7 +125,11 @@ class Profile extends React.Component {
           </section>
           <section className={this.state.showFriends ? "profile-friends" : "profile-friends hide"}>
             <h2>
-            {this.state.hasFollowers ? <p>Followers</p> : <p>Following</p>}
+            {this.state.hasFollowers ?
+              <Followers followers={this.state.followers} />
+              :
+              <Following following={this.state.following} />
+            }
             </h2>
           </section>
         </div>

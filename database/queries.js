@@ -39,12 +39,12 @@ const userComments = user => knex('comments')
 
 const userFollowers = user => knex('followers')
   .where('following', user)
-  .join('users', 'followers.following', '=', 'users.id')
+  .join('users', 'followers.follower', '=', 'users.id')
   .select('followers.*', 'users.name')
 
 const userFollowing = user => knex('followers')
   .where('follower', user)
-  .join('users', 'followers.follower', '=', 'users.id')
+  .join('users', 'followers.following', '=', 'users.id')
   .select('followers.*', 'users.name')
 
 module.exports = {

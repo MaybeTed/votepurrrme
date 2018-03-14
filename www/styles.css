@@ -217,6 +217,18 @@ a {
     margin-top: 50px;
 }
 
+.profile-friends h5 {
+	cursor: pointer;
+	color: white;
+	margin-left: 5px;
+}
+
+.profile-friends h5:hover {
+	position: relative;
+	bottom: 2px;
+	left: 1px;
+}
+
 .profile-right-container {
 	width: 60%;
 }
