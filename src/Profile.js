@@ -15,14 +15,16 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       showFriends: false,
-      followers: true,
+      hasFollowers: true,
       person: {
         id: 1,
         name: 'Sample Data',
         photo: 'https://www.flooringvillage.co.uk/ekmps/shops/flooringvillage/images/request-a-sample--547-p.jpg'
       },
       showFavorites: true,
-      comments: []
+      comments: [],
+      followers: [],
+      following: []
     }
     this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
@@ -53,7 +55,12 @@ class Profile extends React.Component {
   getPerson() {
     axios.get(`/api/getuser?id=${this.props.match.params.id}`)
       .then((user) => {
-        this.setState({ person: user.data.user, comments: user.data.comments })
+        this.setState({
+          person: user.data.user,
+          comments: user.data.comments,
+          followers: user.data.followers,
+          following: user.data.following
+        })
       })
   }
 
@@ -68,22 +75,22 @@ class Profile extends React.Component {
   }
 
   showFollowers() {
-    if (this.state.followers && this.state.showFriends) {
+    if (this.state.hasFollowers && this.state.showFriends) {
       this.setState({ showFriends: false });
     } else if (!this.state.showFriends) {
-      this.setState({ showFriends: true, followers: true });
-    } else if (!this.state.followers) {
-      this.setState({ followers: true });
+      this.setState({ showFriends: true, hasFollowers: true });
+    } else if (!this.state.hasFollowers) {
+      this.setState({ hasFollowers: true });
     }
   }
 
   showFollowing() {
-    if (!this.state.followers && this.state.showFriends) {
+    if (!this.state.hasFollowers && this.state.showFriends) {
       this.setState({ showFriends: false });
     } else if (!this.state.showFriends) {
-      this.setState({ showFriends: true, followers: false });
-    } else if (this.state.followers) {
-      this.setState({ followers: false });
+      this.setState({ showFriends: true, hasFollowers: false });
+    } else if (this.state.hasFollowers) {
+      this.setState({ hasFollowers: false });
     }
   }
 
@@ -105,17 +112,17 @@ class Profile extends React.Component {
             <div className="follow-container">
               <div>
                 <div className="follow-name" onClick={this.showFollowers}>Followers</div>
-                <div className="follow-number" onClick={this.showFollowers}>0</div>
+                <div className="follow-number" onClick={this.showFollowers}>{this.state.followers.length}</div>
               </div>
               <div>
                 <div className="follow-name" onClick={this.showFollowing}>Following</div>
-                <div className="follow-number" onClick={this.showFollowing}>0</div>
+                <div className="follow-number" onClick={this.showFollowing}>{this.state.following ? this.state.following.length : 0}</div>
               </div>
             </div>
           </section>
           <section className={this.state.showFriends ? "profile-friends" : "profile-friends hide"}>
             <h2>
-            {this.state.followers ? <p>Followers</p> : <p>Following</p>}
+            {this.state.hasFollowers ? <p>Followers</p> : <p>Following</p>}
             </h2>
           </section>
         </div>
