@@ -14,7 +14,8 @@ const cats = id => id
 
 const rankCats = () => knex('cats')
   .select()
-  .orderBy('wins', 'desc');
+  .orderBy('wins', 'desc')
+  .orderBy('chances', 'asc');
 
 const searchUsers = q => knex('users')
   .where(knex.raw(`lower(name) like lower('${q}')`))
