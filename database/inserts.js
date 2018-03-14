@@ -19,5 +19,6 @@ const follower = data => knex('followers').insert({
 
 module.exports = {
 	user,
-	comment
+	comment,
+	follower
 }

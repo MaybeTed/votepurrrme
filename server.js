@@ -105,7 +105,16 @@ app.get('/api/getuser', (req, res) => {
 	if (req.query.id) {
 		query.userid(req.query.id).then((user) => {
 			query.userComments(req.query.id).then((comments) => {
-				res.send({ user: user[0], comments });
+				query.userFollowers(req.query.id).then((followers) => {
+					query.userFollowing(req.query.id).then((following) => {
+						res.send({
+							user: user[0],
+							comments,
+							followers,
+							following
+						})
+					})
+				})
 			})
 		})
 	} else {
@@ -145,7 +154,10 @@ app.post('/api/addComment', (req, res) => {
 });
 
 app.post('/api/follow', (req, res) => {
-	insert.follower(req.body);
+	console.log('req.body: ', req.body)
+	insert.follower(req.body)
+	  .then(() => console.log('success'))
+	  .catch((err) => console.log('error inserting follower: ', err))
 	res.end();
 });
 
