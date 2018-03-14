@@ -1,12 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class CatComment extends React.Component {
+	constructor(props) {
+		super(props);
+		console.log('CatComment constructor')
+	}
+
 	render() {
+		console.log('render running')
+		const { created_at, name, message, user_id } = this.props.comment;
 		return (
 			<div className="cat-comment">
-			  <p>Jan 1st 10:22PM</p>
-			  <p className="indent"><span className="username">Bob</span> says</p>
-			  <p>Why is that cat so weird looking?!?! Is that even a cat? Looks more like a monorail</p>
+			  <p>{created_at}</p>
+			  <p className="indent"><Link to={`/profile/${user_id}`} ><span className="username">{name}</span></Link> says</p>
+			  <p>{message}</p>
 
 			</div>
 		)

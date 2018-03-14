@@ -67,7 +67,6 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
 
 app.get('/auth/verify', (req, res) => {
 	if (req.user) {
-		console.log('req.user: ', req.user)
 		query.users(req.user.displayName)
 		  .then((user) => res.send(user[0]))
 	} else {
@@ -108,13 +107,33 @@ app.get('/api/getuser', (req, res) => {
 
 app.get('/api/getcat', (req, res) => {
 	query.cats(req.query.id)
-	  .then((cat) => res.send(cat[0]))
+	  .then((cat) => {
+	  	query.catComments(req.query.id)
+	  	  .then((comments) => {
+	  	  	res.send({ cat: cat[0], comments });
+	  	  })
+	  	  .catch((err) => {
+	  	  	console.log('error retrieving comments: ', err);
+	  	  	res.end();
+	  	  });
+	  })
+	  .catch((err) => {
+	    console.log('error retrieving cat: ', err);
+	  	res.end();
+	  });
 });
 
 app.post('/api/vote', (req, res) => {
   update.winner(req.body.winner.id);
   update.loser(req.body.loser.id);
   res.end();
+});
+
+app.post('/api/addComment', (req, res) => {
+	insert.comment(req.body)
+	  .then(() => console.log('success'))
+	  .catch((err) => console.log('error inserting comment: ', err))
+	res.end();
 });
 
 app.get('*', (req, res) => {
