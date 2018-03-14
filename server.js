@@ -144,6 +144,11 @@ app.post('/api/addComment', (req, res) => {
 	res.end();
 });
 
+app.post('/api/follow', (req, res) => {
+	insert.follower(req.body);
+	res.end();
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });

@@ -24,7 +24,7 @@ class Profile extends React.Component {
       showFavorites: true,
       comments: []
     }
-
+    this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
     this.showFollowing = this.showFollowing.bind(this);
     this.showFollowers = this.showFollowers.bind(this);
@@ -39,6 +39,15 @@ class Profile extends React.Component {
     if (this.state.person.id !== +this.props.match.params.id) {
       this.getPerson();
     }
+  }
+
+  follow() {
+    // make a condition that says if this person is already a follower
+    // you can't follow again, but you can unfollow
+    axios.post('/api/follow', {
+      follower: this.props.auth.id,
+      following: this.state.person.id
+    }).then(() => this.getPerson())
   }
 
   getPerson() {
@@ -85,8 +94,14 @@ class Profile extends React.Component {
         <div className="profile-left-container">
           <section className="profile-user">
             <img src={person.photo} />
-            <h3>{person.name}</h3>
-            <h5>Display reputation here</h5>
+            <div className="profile-name-and-button">
+              <h3>{person.name}</h3>
+              {this.props.auth && this.props.auth.id !== person.id ?
+                <button onClick={this.follow}>Follow</button>
+                :
+                null
+              }
+            </div>
             <div className="follow-container">
               <div>
                 <div className="follow-name" onClick={this.showFollowers}>Followers</div>

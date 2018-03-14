@@ -171,8 +171,27 @@ a {
 	display: block;
 }
 
-.profile-user h3, h5 {
+.profile-user h3 {
+	font-size: 1.3em;
+}
+
+.profile-user h5 {
 	margin-left: 49px;
+	border: 1px solid black;
+}
+
+.profile-name-and-button {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.profile-user button {
+	margin-left: 10px;
+	height: 20px;
+	align-self: center;
+	cursor: pointer;
 }
 
 .follow-container {

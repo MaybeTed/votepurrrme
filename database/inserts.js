@@ -12,6 +12,11 @@ const comment = data => knex('comments').insert({
 	cat_id: data.catid
 });
 
+const follower = data => knex('followers').insert({
+	follower: data.follower,
+	following: data.following
+});
+
 module.exports = {
 	user,
 	comment
