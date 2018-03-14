@@ -30,6 +30,11 @@ const catComments = cat => knex('comments')
   .join('users', 'comments.user_id', '=', 'users.id')
   .select('comments.*', 'users.name')
 
+const userComments = user => knex('comments')
+  .where('user_id', user)
+  .join('users', 'comments.user_id', '=', 'users.id')
+  .select('comments.*', 'users.name')
+
 module.exports = {
 	users,
 	userid,
@@ -37,5 +42,6 @@ module.exports = {
 	rankCats,
 	searchUsers,
 	searchCats,
-  catComments
+  catComments,
+  userComments
 };

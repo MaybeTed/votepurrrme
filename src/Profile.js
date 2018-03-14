@@ -21,7 +21,8 @@ class Profile extends React.Component {
         name: 'Sample Data',
         photo: 'https://www.flooringvillage.co.uk/ekmps/shops/flooringvillage/images/request-a-sample--547-p.jpg'
       },
-      showFavorites: true
+      showFavorites: true,
+      comments: []
     }
 
     this.getPerson = this.getPerson.bind(this);
