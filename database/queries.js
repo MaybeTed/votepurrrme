@@ -27,7 +27,8 @@ const searchCats = q => knex('cats')
 
 const catComments = cat => knex('comments')
   .where('cat_id', cat)
-  .select()
+  .join('users', 'comments.user_id', '=', 'users.id')
+  .select('comments.*', 'users.name')
 
 module.exports = {
 	users,

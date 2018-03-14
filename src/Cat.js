@@ -63,6 +63,7 @@ class Cat extends React.Component {
 	
   render() {
   	const { cat } = this.state;
+    console.log('this.state.comments from render: ', this.state.comments)
 	return (
 	  <div className="cat-page">
       <section className="cat-left-container">
@@ -83,7 +84,7 @@ class Cat extends React.Component {
           <button onClick={this.submitComment} >Submit</button>
         </div>
         {this.state.comments.map((comment, index) => {
-          <CatComment key={index} comment={comment} />
+          return <CatComment key={index} comment={comment} />
         })}
       </section>
 	  </div>
