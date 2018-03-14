@@ -23,9 +23,7 @@ class CatComment extends React.Component {
 	    '12': 'December'
 	  }
 	  let time = str.split('-');
-	  console.log('time: ', time)
 	  let [ year, month, day ] = time;
-	  console.log('year: ', year)
 	  day = day.split('T')[0];
 	  return months[month] + ' ' + day + ', ' + year;
 	}
