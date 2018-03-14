@@ -26,6 +26,13 @@ class Vote extends React.Component {
       this.getNewCats();
 	}
 
+    addToFavorites(cat) {
+        axios.post('/api/addFavorite', {
+            user: this.props.auth.id,
+            cat: this.state.current[cat].id
+        }).then(() => console.log('sent cat to db'))
+    }
+
 	getNewCats(winner, loser) {
       if (winner) {
         // send winner and loser to database
@@ -63,7 +70,17 @@ class Vote extends React.Component {
                   <div className="competition-cat">
                     <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.current[0].url}`} onClick={this.getNewCats.bind(null, this.state.current[0], this.state.current[1])} />
                     <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${this.state.current[1].url}`} onClick={this.getNewCats.bind(null, this.state.current[1], this.state.current[0])} />
-                  </div> 		        
+                  </div> 
+                  <div className="add-to-favorites">
+                    <img 
+                      src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"
+                      onClick={() => this.addToFavorites(0)}
+                    />
+                    <img
+                      src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png"
+                      onClick={() => this.addToFavorites(1)}
+                    />
+                  </div>		        
     	      </div>
             </div>
 		)

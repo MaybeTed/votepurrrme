@@ -161,6 +161,10 @@ app.post('/api/follow', (req, res) => {
 	res.end();
 });
 
+app.post('/api/addFavorite', (req, res) => {
+	// todo: add user, cat to db
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });

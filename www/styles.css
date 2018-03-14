@@ -41,6 +41,7 @@ a {
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 7;
 }
 
 .nav > h3 {
@@ -77,15 +78,18 @@ a {
   right: 390px;
   width: 122px;
   background: #4286f4;
+  z-index: 6;
 }
 
 .logged-in-results {
 	right: 505px;
+	z-index: 6;
 }
 
 .search-result {
   border: 1px solid black;
   padding: 2px;
+  z-index: 6;
 }
 
 .search-result:hover {
@@ -133,6 +137,21 @@ a {
 	height: 500px;
 	cursor: pointer;
 	border: 1px solid black;
+}
+
+.add-to-favorites {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	width: 700px;
+	margin: auto;	
+}
+
+.add-to-favorites img {
+	width: 30px;
+	height: 30px;
+	margin-top: 15px;
+	cursor: pointer;
 }
 
 /* -------------------
