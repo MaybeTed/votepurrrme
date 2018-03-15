@@ -108,11 +108,14 @@ app.get('/api/getuser', (req, res) => {
 			query.userComments(req.query.id).then((comments) => {
 				query.userFollowers(req.query.id).then((followers) => {
 					query.userFollowing(req.query.id).then((following) => {
-						res.send({
-							user: user[0],
-							comments,
-							followers,
-							following
+						query.userFavorites(req.query.id).then((favorites) => {
+							res.send({
+								user: user[0],
+								comments,
+								followers,
+								following,
+								favorites
+							})
 						})
 					})
 				})

@@ -250,16 +250,17 @@ a {
 
 .profile-right-container {
 	width: 60%;
+	margin-right: 30px;
 }
 
 .my-options {
 	display: flex;
 	flex-wrap: nowrap;
-	margin-left: 20px;
+	margin-left: 50px;
 }
 
 .my-options div {
-	padding: 5px;
+	padding: 5px 10px;
 	font-family: helvetica;
 	font-weight: bold;
 	color: #4286f4;
@@ -281,6 +282,7 @@ a {
 
 .folder {
 	border: 1px solid black;
+	border-radius: 10px 10px 0 0;
 	z-index: 1;
 	margin-top: -1px;
 	padding-bottom: 20px;
@@ -299,6 +301,12 @@ a {
 .profile-comment-info {
 	width: 75%;
 	display: inline-block;
+	padding-left: 15px;
+}
+
+.profile-comment-message {
+	font-size: 1.2em;
+	padding-left: 10px;
 }
 
 .profile-cat-img {
@@ -308,6 +316,23 @@ a {
 
 .profile-cat-img img {
 	width: 100%;
+}
+
+.favorite-container {
+	margin-top: 20px;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.favorite-container img {
+	width: 150px;
+	height: 150px;
+}
+
+.favorite-container p {
+	text-align: center;
 }
 
 

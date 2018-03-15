@@ -36,7 +36,7 @@ class ProfileComments extends React.Component {
 			    <div className="mycomments-container" key={index} >
 			      <section className="profile-comment-info">
 			        <p>{this.changeTime(comment.created_at)}</p>
-			        <p>{comment.message}</p>
+			        <p className="profile-comment-message">{comment.message}</p>
 			      </section>
 			      <section className="profile-cat-img">
 			        <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${comment.url}`} />

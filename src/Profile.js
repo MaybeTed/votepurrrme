@@ -26,7 +26,8 @@ class Profile extends React.Component {
       showFavorites: true,
       comments: [],
       followers: [],
-      following: []
+      following: [],
+      favorites: []
     }
     this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
@@ -57,11 +58,13 @@ class Profile extends React.Component {
   getPerson() {
     axios.get(`/api/getuser?id=${this.props.match.params.id}`)
       .then((user) => {
+        console.log('user.data.favorites: ', user.data.favorites)
         this.setState({
           person: user.data.user,
           comments: user.data.comments,
           followers: user.data.followers,
           following: user.data.following,
+          favorites: user.data.favorites,
           showFriends: false,
         })
       })
@@ -99,6 +102,7 @@ class Profile extends React.Component {
 
 	render() {
     const { person } = this.state;
+    console.log('state of showFavorites: ', this.state.showFavorites)
 		return (
       <div className="profile">
         <div className="profile-left-container">
@@ -135,11 +139,11 @@ class Profile extends React.Component {
         </div>
         <div className="profile-right-container">
           <div className="my-options">
-            <div className={this.state.showFavorites ? "my-favorites white-underline" : "my-favorites black-underline"} onClick={(e) => this.showFavorites(e)} >My Favorites</div>
-            <div className={this.state.showFavorites ? "my-comments black-underline" : "my-comments white-underline"} onClick={(e) => this.showFavorites(e)} >My Comments</div>
+            <div className={this.state.showFavorites ? "my-favorites white-underline" : "my-favorites black-underline"} onClick={(e) => this.showFavorites(e)} >Favorites</div>
+            <div className={this.state.showFavorites ? "my-comments black-underline" : "my-comments white-underline"} onClick={(e) => this.showFavorites(e)} >Comments</div>
           </div>
           {this.state.showFavorites ?
-            <ProfileFavorites />
+            <ProfileFavorites favorites={this.state.favorites} />
             :
             <ProfileComments comments={this.state.comments} />
           }

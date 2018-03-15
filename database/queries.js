@@ -54,7 +54,8 @@ const areFavorites = (user, cat) => knex('favorites')
 
 const userFavorites = user => knex('favorites')
   .where('user_id', user)
-  .select()
+  .join('cats', 'favorites.cat_id', '=', 'cats.id')
+  .select('cats.url', 'cats.name', 'cats.id')
 
 module.exports = {
 	users,
