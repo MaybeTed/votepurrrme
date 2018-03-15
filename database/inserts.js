@@ -17,8 +17,14 @@ const follower = data => knex('followers').insert({
 	following: data.following
 });
 
+const favorite = data => knex('favorites').insert({
+	user_id: data.user,
+	cat_id: data.cat
+});
+
 module.exports = {
 	user,
 	comment,
-	follower
+	follower,
+	favorite
 }
