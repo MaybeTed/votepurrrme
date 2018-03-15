@@ -41,6 +41,7 @@ a {
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 7;
 }
 
 .nav > h3 {
@@ -77,15 +78,18 @@ a {
   right: 390px;
   width: 122px;
   background: #4286f4;
+  z-index: 6;
 }
 
 .logged-in-results {
 	right: 505px;
+	z-index: 6;
 }
 
 .search-result {
   border: 1px solid black;
   padding: 2px;
+  z-index: 6;
 }
 
 .search-result:hover {
@@ -135,6 +139,21 @@ a {
 	border: 1px solid black;
 }
 
+.add-to-favorites {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	width: 700px;
+	margin: auto;	
+}
+
+.add-to-favorites img {
+	width: 30px;
+	height: 30px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+
 /* -------------------
 ---- end MainPage ----
 --------------------*/
@@ -171,8 +190,27 @@ a {
 	display: block;
 }
 
-.profile-user h3, h5 {
+.profile-user h3 {
+	font-size: 1.3em;
+}
+
+.profile-user h5 {
 	margin-left: 49px;
+	border: 1px solid black;
+}
+
+.profile-name-and-button {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.profile-user button {
+	margin-left: 10px;
+	height: 20px;
+	align-self: center;
+	cursor: pointer;
 }
 
 .follow-container {
@@ -196,6 +234,18 @@ a {
     min-height: 300px;
     margin-left: 50px;
     margin-top: 50px;
+}
+
+.profile-friends h5 {
+	cursor: pointer;
+	color: white;
+	margin-left: 5px;
+}
+
+.profile-friends h5:hover {
+	position: relative;
+	bottom: 2px;
+	left: 1px;
 }
 
 .profile-right-container {

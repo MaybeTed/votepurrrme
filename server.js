@@ -15,6 +15,7 @@ const db = require('./database/db');
 const insert = require('./database/inserts');
 const query = require('./database/queries');
 const update = require('./database/updates');
+const deletes = require('./database/deletes');
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -105,7 +106,16 @@ app.get('/api/getuser', (req, res) => {
 	if (req.query.id) {
 		query.userid(req.query.id).then((user) => {
 			query.userComments(req.query.id).then((comments) => {
-				res.send({ user: user[0], comments });
+				query.userFollowers(req.query.id).then((followers) => {
+					query.userFollowing(req.query.id).then((following) => {
+						res.send({
+							user: user[0],
+							comments,
+							followers,
+							following
+						})
+					})
+				})
 			})
 		})
 	} else {
@@ -131,6 +141,20 @@ app.get('/api/getcat', (req, res) => {
 	  });
 });
 
+app.get('/api/checkFavorites', (req, res) => {
+	query.areFavorites(req.query.userid, req.query.cat1id)
+	  .then((cat1) => {
+	  	console.log('cat1: ', cat1)
+	  	query.areFavorites(req.query.userid, req.query.cat2id)
+	  	  .then((cat2) => {
+	  	  	console.log('cat2: ', cat2)
+	  	  	res.send({ cat1, cat2 })
+	  	  })
+	  	  .catch((err) => console.log('error: ', err))
+	  })
+	  .catch((err) => console.log('error: ', err))
+});
+
 app.post('/api/vote', (req, res) => {
   update.winner(req.body.winner.id);
   update.loser(req.body.loser.id);
@@ -142,6 +166,24 @@ app.post('/api/addComment', (req, res) => {
 	  .then(() => console.log('success'))
 	  .catch((err) => console.log('error inserting comment: ', err))
 	res.end();
+});
+
+app.post('/api/follow', (req, res) => {
+	console.log('req.body: ', req.body)
+	insert.follower(req.body)
+	  .then(() => console.log('success'))
+	  .catch((err) => console.log('error inserting follower: ', err))
+	res.end();
+});
+
+app.post('/api/addFavorite', (req, res) => {
+	insert.favorite(req.body)
+	  .then(() => res.end())
+});
+
+app.post('/api/removeFavorite', (req, res) => {
+	deletes.favorites(req.body.user, req.body.cat)
+	  .then(() => res.end())
 });
 
 app.get('*', (req, res) => {
