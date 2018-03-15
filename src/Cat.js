@@ -30,14 +30,14 @@ class Cat extends React.Component {
     this.getCat();
   }
 
-  // componentDidUpdate() {
-  //   if (this.state.cat.id !== +this.props.match.params.id) {
-  //     this.getCat();
-  //     console.log('running')
-  //   }
-  //   console.log('this.state.cat.id: ', this.state.cat.id)
-  //   console.log('this.props.match.params.id: ', this.props.match.params.id)
-  // }
+  componentDidUpdate() {
+    if (this.state.cat.id !== +this.props.match.params.id) {
+      this.getCat();
+      console.log('running')
+    }
+    console.log('this.state.cat.id: ', this.state.cat.id)
+    console.log('this.props.match.params.id: ', this.props.match.params.id)
+  }
 
   getCat() {
     axios.get(`/api/getcat?id=${this.props.match.params.id}`)
@@ -64,32 +64,31 @@ class Cat extends React.Component {
 	
   render() {
   	const { cat } = this.state;
-    console.log('this.state.comments from render: ', this.state.comments)
-	return (
-	  <div className="cat-page">
-      <section className="cat-left-container">
-	      <div className="cat-info">
-		      <h2>{cat.name}</h2>
-          <div className="stats">
-		        <h4>Wins: {cat.wins}</h4>
-		        <h4>Chances: {cat.chances}</h4>
-		        <h4>Win Percentage: {(cat.wins/cat.chances*100).toFixed(0) + '%'}</h4>
+	  return (
+	    <div className="cat-page">
+        <section className="cat-left-container">
+	        <div className="cat-info">
+		        <h2>{cat.name}</h2>
+            <div className="stats">
+		          <h4>Wins: {cat.wins}</h4>
+		          <h4>Chances: {cat.chances}</h4>
+		          <h4>Win Percentage: {(cat.wins/cat.chances*100).toFixed(0) + '%'}</h4>
+            </div>
+		      </div>
+		      <img className="cat-page-cat-image" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${cat.url}`} />
+        </section>
+        <section className="cat-right-container">
+          <div className="leave-comment-container">
+            <p>Leave a comment</p>
+            <textarea id="comment" cols="30" rows="4" />
+            <button onClick={this.submitComment} >Submit</button>
           </div>
-		    </div>
-		    <img className="cat-page-cat-image" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${cat.url}`} />
-      </section>
-      <section className="cat-right-container">
-        <div className="leave-comment-container">
-          <p>Leave a comment</p>
-          <textarea id="comment" cols="30" rows="4" />
-          <button onClick={this.submitComment} >Submit</button>
-        </div>
-        {this.state.comments.map((comment, index) => {
-          return <CatComment key={index} comment={comment} />
-        })}
-      </section>
-	  </div>
-	)
+          {this.state.comments.map((comment, index) => {
+            return <CatComment key={index} comment={comment} />
+          })}
+        </section>
+	    </div>
+	  )
   }
 }
 
