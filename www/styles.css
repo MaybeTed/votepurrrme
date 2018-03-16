@@ -204,17 +204,27 @@ a {
 }
 
 .profile-name-and-button {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
 	margin-bottom: 20px;
+	position: relative;
+	text-align: center;
 }
 
-.profile-user button {
-	margin-left: 10px;
-	height: 20px;
-	align-self: center;
+/*.profile-name-and-button h3 {
+	text-align: center;
+}*/
+
+.follow-button {
+	margin: auto;
+	width: 75px;
+	height: 25px;
+	border: 1px solid black;
+	border-radius: 20px;
+	background: #dae0ea;
 	cursor: pointer;
+}
+
+.follow-button:hover {
+	background: white;
 }
 
 .follow-container {

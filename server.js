@@ -185,6 +185,13 @@ app.post('/api/follow', (req, res) => {
 	res.end();
 });
 
+app.post('/api/unfollow', (req, res) => {
+    deletes.follower(req.body)
+      .then(() => console.log('unfollowed'))
+      .catch((err) => console.log('error unfollowing user: ', err))
+    res.end();
+});
+
 app.post('/api/addFavorite', (req, res) => {
 	insert.favorite(req.body)
 	  .then(() => {

@@ -46,8 +46,6 @@ class Vote extends React.Component {
 	getNewCats(winner, loser) {
       if (winner) {
         // send winner and loser to database
-        console.log('winner: ', winner);
-        console.log('loser: ', loser);
         axios.post('/api/vote', {
             winner,
             loser

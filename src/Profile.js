@@ -27,10 +27,12 @@ class Profile extends React.Component {
       comments: [],
       followers: [],
       following: [],
-      favorites: []
+      favorites: [],
+      isFollowing: false
     }
     this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
+    this.renderButtonText = this.renderButtonText.bind(this);
     this.showFollowing = this.showFollowing.bind(this);
     this.showFollowers = this.showFollowers.bind(this);
     this.showFavorites = this.showFavorites.bind(this);
@@ -49,10 +51,18 @@ class Profile extends React.Component {
   follow() {
     // make a condition that says if this person is already a follower
     // you can't follow again, but you can unfollow
-    axios.post('/api/follow', {
-      follower: this.props.auth.id,
-      following: this.state.person.id
-    }).then(() => this.getPerson())
+
+    if (this.state.isFollowing === false) {
+      axios.post('/api/follow', {
+        follower: this.props.auth.id,
+        following: this.state.person.id
+      }).then(() => this.getPerson())
+    } else {
+      axios.post('/api/unfollow', {
+        follower: this.props.auth.id,
+        following: this.state.person.id 
+      }).then(() => this.getPerson())
+    }
   }
 
   getPerson() {
@@ -67,6 +77,22 @@ class Profile extends React.Component {
           showFriends: false,
         })
       })
+  }
+
+  renderButtonText() {
+    let person = this.state.followers;
+    for (var i = 0; i < person.length; i++) {
+      if (person[i].follower === this.props.auth.id) {
+        if (this.state.isFollowing === false) {
+          this.setState({ isFollowing: true });
+        }
+        return 'Unfollow';
+      }
+    }
+    if (this.state.isFollowing) {
+      this.setState({ isFollowing: false });
+    }
+    return 'Follow';
   }
 
   showFavorites(e) {
@@ -109,7 +135,7 @@ class Profile extends React.Component {
             <div className="profile-name-and-button">
               <h3>{person.name}</h3>
               {this.props.auth && this.props.auth.id !== person.id ?
-                <button onClick={this.follow}>Follow</button>
+                <button className="follow-button" onClick={this.follow}>{this.renderButtonText()}</button>
                 :
                 null
               }
