@@ -31,6 +31,7 @@ class Cat extends React.Component {
   }
 
   componentDidMount() {
+    this.props.whichPage('Cat');
     this.getCat();
   }
 

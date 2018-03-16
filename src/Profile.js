@@ -58,7 +58,6 @@ class Profile extends React.Component {
   getPerson() {
     axios.get(`/api/getuser?id=${this.props.match.params.id}`)
       .then((user) => {
-        console.log('user.data.favorites: ', user.data.favorites)
         this.setState({
           person: user.data.user,
           comments: user.data.comments,
@@ -102,7 +101,6 @@ class Profile extends React.Component {
 
 	render() {
     const { person } = this.state;
-    console.log('state of showFavorites: ', this.state.showFavorites)
 		return (
       <div className="profile">
         <div className="profile-left-container">
