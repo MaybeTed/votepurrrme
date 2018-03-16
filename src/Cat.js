@@ -88,9 +88,9 @@ class Cat extends React.Component {
 
   showFavoriteIcon() {
     if (this.state.isFavorite && this.state.isFavorite.length > 0 && this.state.isFavorite[0].cat_id === this.state.cat.id) {
-      return <img onClick={this.removeFavorite} src="http://clipart-library.com/images/gTe5anbEc.png" />
+      return <img className="pointer" onClick={this.removeFavorite} src="http://clipart-library.com/images/gTe5anbEc.png" />
     } else {
-      return <img onClick={this.addFavorite} src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png" />
+      return <img className="pointer" onClick={this.addFavorite} src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png" />
     }
   }
 	

@@ -40,10 +40,8 @@ class App extends React.Component {
     }
 
 	whichPage(event) {
-	  console.log('whichPage event: ', event)
       let destination;
       if (event.currentTarget) {
-      	console.log('event.currentTarget.textContent: ', event.currentTarget.textContent)
       	destination = event.currentTarget.textContent;
       } else {
     	destination = event;

@@ -30,6 +30,10 @@ a {
 	border-bottom: 2px solid white;
 }
 
+.pointer {
+	cursor: pointer;
+}
+
 /* -------------------
 ------- Nav ----------
 --------------------*/
@@ -286,12 +290,14 @@ a {
 	margin-top: -1px;
 	padding-bottom: 20px;
 	min-height: 350px;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .mycomments-container {
 	border: 1px solid black;
 	border-radius: 10px;
-	width: 90%;
+	width: 100%;
 	margin: auto;
 	margin-top: 20px;
 	display: flex;

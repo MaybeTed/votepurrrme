@@ -43,7 +43,6 @@ class Nav extends React.Component {
     let query = document.getElementsByClassName('search-input')[0].value;
     axios.get(`/api/search?input=${query}`)
       .then((results) => {
-        console.log('search results: ', results.data)
         let searchResults = [].concat(results.data.users, results.data.cats);
         this.setState({ searchResults });
       })
