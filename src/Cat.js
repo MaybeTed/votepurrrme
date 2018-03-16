@@ -20,9 +20,13 @@ class Cat extends React.Component {
       	wins: 0,
       	chances: 0
       }, 
-      comments: []
+      comments: [],
+      isFavorite: false
   	}
+    this.addFavorite = this.addFavorite.bind(this);
     this.getCat = this.getCat.bind(this);
+    this.removeFavorite = this.removeFavorite.bind(this);
+    this.showFavoriteIcon = this.showFavoriteIcon.bind(this);
     this.submitComment = this.submitComment.bind(this);
   }
 
@@ -33,19 +37,38 @@ class Cat extends React.Component {
   componentDidUpdate() {
     if (this.state.cat.id !== +this.props.match.params.id) {
       this.getCat();
-      console.log('running')
     }
-    console.log('this.state.cat.id: ', this.state.cat.id)
-    console.log('this.props.match.params.id: ', this.props.match.params.id)
+  }
+
+  addFavorite() {
+    axios.post('/api/addFavorite', {
+        user: this.props.auth.id,
+        cat: this.state.cat.id
+    }).then((favorite) => {
+        this.setState({ isFavorite: favorite.data.favorite })
+    })
   }
 
   getCat() {
-    axios.get(`/api/getcat?id=${this.props.match.params.id}`)
+    let loggedin = false;
+    if (this.props.auth) {
+      loggedin = this.props.auth.id;
+    }
+    axios.get(`/api/getcat?id=${this.props.match.params.id}&user=${loggedin}`)
       .then((cat) => {
-        console.log('data: ', cat);
-        this.setState({ cat: cat.data.cat, comments: cat.data.comments })
+        let isFavorite = cat.data.favorite && cat.data.favorite.length > 0 ? cat.data.favorite: false;
+        this.setState({ cat: cat.data.cat, comments: cat.data.comments, isFavorite })
       })
       .catch((err) => console.log('error: ', err))
+  }
+
+  removeFavorite() {
+    axios.post('/api/removeFavorite', {
+        user: this.props.auth.id,
+        cat: this.state.cat.id
+    }).then(() => {
+        this.setState({ isFavorite: false })
+    })
   }
 
   submitComment() {
@@ -61,6 +84,14 @@ class Cat extends React.Component {
       alert('Please log in if you would like to comment');
     }
   }
+
+  showFavoriteIcon() {
+    if (this.state.isFavorite && this.state.isFavorite.length > 0 && this.state.isFavorite[0].cat_id === this.state.cat.id) {
+      return <img onClick={this.removeFavorite} src="http://clipart-library.com/images/gTe5anbEc.png" />
+    } else {
+      return <img onClick={this.addFavorite} src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png" />
+    }
+  }
 	
   render() {
   	const { cat } = this.state;
@@ -68,6 +99,11 @@ class Cat extends React.Component {
 	    <div className="cat-page">
         <section className="cat-left-container">
 	        <div className="cat-info">
+            {this.props.auth ?
+              this.showFavoriteIcon()
+              :
+              null
+            }
 		        <h2>{cat.name}</h2>
             <div className="stats">
 		          <h4>Wins: {cat.wins}</h4>

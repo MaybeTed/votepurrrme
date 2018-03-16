@@ -499,6 +499,15 @@ a {
 	border: 3px solid black;
 	border-radius: 15px;
 	padding-bottom: 20px;
+	position: relative;
+}
+
+.cat-info img {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .cat-info h2 {

@@ -29,7 +29,6 @@ class CatComment extends React.Component {
 	}
 
 	render() {
-		console.log('render running')
 		const { created_at, name, message, user_id } = this.props.comment;
 		return (
 			<div className="cat-comment">
