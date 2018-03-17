@@ -30,6 +30,10 @@ a {
 	border-bottom: 2px solid white;
 }
 
+.pointer {
+	cursor: pointer;
+}
+
 /* -------------------
 ------- Nav ----------
 --------------------*/
@@ -200,17 +204,27 @@ a {
 }
 
 .profile-name-and-button {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: center;
 	margin-bottom: 20px;
+	position: relative;
+	text-align: center;
 }
 
-.profile-user button {
-	margin-left: 10px;
-	height: 20px;
-	align-self: center;
+/*.profile-name-and-button h3 {
+	text-align: center;
+}*/
+
+.follow-button {
+	margin: auto;
+	width: 75px;
+	height: 25px;
+	border: 1px solid black;
+	border-radius: 20px;
+	background: #dae0ea;
 	cursor: pointer;
+}
+
+.follow-button:hover {
+	background: white;
 }
 
 .follow-container {
@@ -238,7 +252,6 @@ a {
 
 .profile-friends h5 {
 	cursor: pointer;
-	color: white;
 	margin-left: 5px;
 }
 
@@ -250,16 +263,17 @@ a {
 
 .profile-right-container {
 	width: 60%;
+	margin-right: 30px;
 }
 
 .my-options {
 	display: flex;
 	flex-wrap: nowrap;
-	margin-left: 20px;
+	margin-left: 50px;
 }
 
 .my-options div {
-	padding: 5px;
+	padding: 5px 10px;
 	font-family: helvetica;
 	font-weight: bold;
 	color: #4286f4;
@@ -281,16 +295,19 @@ a {
 
 .folder {
 	border: 1px solid black;
+	border-radius: 10px 10px 0 0;
 	z-index: 1;
 	margin-top: -1px;
 	padding-bottom: 20px;
 	min-height: 350px;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 .mycomments-container {
 	border: 1px solid black;
 	border-radius: 10px;
-	width: 90%;
+	width: 100%;
 	margin: auto;
 	margin-top: 20px;
 	display: flex;
@@ -299,6 +316,12 @@ a {
 .profile-comment-info {
 	width: 75%;
 	display: inline-block;
+	padding-left: 15px;
+}
+
+.profile-comment-message {
+	font-size: 1.2em;
+	padding-left: 10px;
 }
 
 .profile-cat-img {
@@ -308,6 +331,23 @@ a {
 
 .profile-cat-img img {
 	width: 100%;
+}
+
+.favorite-container {
+	margin-top: 20px;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.favorite-container img {
+	width: 150px;
+	height: 150px;
+}
+
+.favorite-container p {
+	text-align: center;
 }
 
 
@@ -404,6 +444,32 @@ a {
     bottom: 50px;
 	display: block;
 	height: 300px;
+	animation: grow 5s linear forwards, spin 2s linear forwards;
+}
+
+@keyframes grow {
+	0% {
+		height: 0;
+		bottom: 175px;
+/*		transform: translateX(-50%) rotate(0deg);*/
+		left: 25%;
+	}
+
+	100% {
+		height: 300px;
+		bottom: 50px;
+/*		transform: translateX(-50%) rotate(-360deg);*/
+		left: 25%;
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: translateX(-50%) rotate(0deg);
+	}
+	100% {
+		transform: translateX(-50%) rotate(-360deg);
+	}
 }
 
 .popular-cats-container {
@@ -449,6 +515,33 @@ a {
 	border: 3px solid black;
 	border-radius: 15px;
 	padding-bottom: 20px;
+	position: relative;
+}
+
+.likes-container {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+}
+
+.likes-container img {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+
+.likes-container p {
+	font-size: 12px;
+	border: 1px solid black;
+	border-radius: 15px;
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	line-height: 17px;
+	text-align: center;
+	margin-bottom: 15px;
+	position: relative;
+	bottom: 25px;
 }
 
 .cat-info h2 {

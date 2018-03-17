@@ -108,11 +108,14 @@ app.get('/api/getuser', (req, res) => {
 			query.userComments(req.query.id).then((comments) => {
 				query.userFollowers(req.query.id).then((followers) => {
 					query.userFollowing(req.query.id).then((following) => {
-						res.send({
-							user: user[0],
-							comments,
-							followers,
-							following
+						query.userFavorites(req.query.id).then((favorites) => {
+							res.send({
+								user: user[0],
+								comments,
+								followers,
+								following,
+								favorites
+							})
 						})
 					})
 				})
@@ -128,12 +131,18 @@ app.get('/api/getcat', (req, res) => {
 	  .then((cat) => {
 	  	query.catComments(req.query.id)
 	  	  .then((comments) => {
-	  	  	res.send({ cat: cat[0], comments });
+	  	  	query.catLikes(req.query.id)
+	  	  	  .then((likes) => {
+	  	  	  	if (req.query.user !== 'false' && req.query.user !== 'undefined') {
+	  	  		  query.areFavorites(req.query.user, req.query.id)
+	  	  		    .then((favorite) => {
+	  	  		  	  res.send({ cat: cat[0], comments, likes, favorite });
+	  	  		    })
+	  	  	    } else {
+	  	  		  res.send({ cat: cat[0], comments, likes });
+	  	  	    }
+	  	  	  })
 	  	  })
-	  	  .catch((err) => {
-	  	  	console.log('error retrieving comments: ', err);
-	  	  	res.end();
-	  	  });
 	  })
 	  .catch((err) => {
 	    console.log('error retrieving cat: ', err);
@@ -144,13 +153,15 @@ app.get('/api/getcat', (req, res) => {
 app.get('/api/checkFavorites', (req, res) => {
 	query.areFavorites(req.query.userid, req.query.cat1id)
 	  .then((cat1) => {
-	  	console.log('cat1: ', cat1)
-	  	query.areFavorites(req.query.userid, req.query.cat2id)
-	  	  .then((cat2) => {
-	  	  	console.log('cat2: ', cat2)
-	  	  	res.send({ cat1, cat2 })
-	  	  })
-	  	  .catch((err) => console.log('error: ', err))
+	  	if (req.query.cat2id !== 'undefined') {
+	  	  query.areFavorites(req.query.userid, req.query.cat2id)
+	  	    .then((cat2) => {
+	  	  	  res.send({ cat1, cat2 })
+	  	    })
+	  	    .catch((err) => console.log('error: ', err))
+	  	} else {
+	  		res.send({ cat1 })
+	  	}
 	  })
 	  .catch((err) => console.log('error: ', err))
 });
@@ -176,9 +187,21 @@ app.post('/api/follow', (req, res) => {
 	res.end();
 });
 
+app.post('/api/unfollow', (req, res) => {
+    deletes.follower(req.body)
+      .then(() => console.log('unfollowed'))
+      .catch((err) => console.log('error unfollowing user: ', err))
+    res.end();
+});
+
 app.post('/api/addFavorite', (req, res) => {
 	insert.favorite(req.body)
-	  .then(() => res.end())
+	  .then(() => {
+	  	query.areFavorites(req.body.user, req.body.cat)
+	  	  .then((favorite) => {
+	  	  	res.send({ favorite })
+	  	  })
+	  })
 });
 
 app.post('/api/removeFavorite', (req, res) => {

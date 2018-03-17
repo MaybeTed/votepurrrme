@@ -5,6 +5,12 @@ const favorites = (user, cat) => knex('favorites')
   .andWhere('user_id', user)
   .del();
 
+const follower = (users) => knex('followers')
+  .where('follower', users.follower)
+  .andWhere('following', users.following)
+  .del();
+
 module.exports = {
-	favorites
+	favorites,
+	follower,
 }

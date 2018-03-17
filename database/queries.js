@@ -52,6 +52,15 @@ const areFavorites = (user, cat) => knex('favorites')
   .andWhere('user_id', user)
   .select()
 
+const userFavorites = user => knex('favorites')
+  .where('user_id', user)
+  .join('cats', 'favorites.cat_id', '=', 'cats.id')
+  .select('cats.url', 'cats.name', 'cats.id')
+
+const catLikes = cat => knex('favorites')
+  .where('cat_id', cat)
+  .select()
+
 module.exports = {
 	users,
 	userid,
@@ -63,5 +72,7 @@ module.exports = {
   userComments,
   userFollowers,
   userFollowing,
-  areFavorites
+  areFavorites,
+  userFavorites,
+  catLikes
 };
