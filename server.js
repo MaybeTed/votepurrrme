@@ -131,15 +131,17 @@ app.get('/api/getcat', (req, res) => {
 	  .then((cat) => {
 	  	query.catComments(req.query.id)
 	  	  .then((comments) => {
-	  	  	if (req.query.user !== 'false' && req.query.user !== 'undefined') {
-	  	  		console.log('req.query.user: ', req.query.user)
-	  	  		query.areFavorites(req.query.user, req.query.id)
-	  	  		  .then((favorite) => {
-	  	  		  	res.send({ cat: cat[0], comments, favorite });
-	  	  		  })
-	  	  	} else {
-	  	  		res.send({ cat: cat[0], comments });
-	  	  	}
+	  	  	query.catLikes(req.query.id)
+	  	  	  .then((likes) => {
+	  	  	  	if (req.query.user !== 'false' && req.query.user !== 'undefined') {
+	  	  		  query.areFavorites(req.query.user, req.query.id)
+	  	  		    .then((favorite) => {
+	  	  		  	  res.send({ cat: cat[0], comments, likes, favorite });
+	  	  		    })
+	  	  	    } else {
+	  	  		  res.send({ cat: cat[0], comments, likes });
+	  	  	    }
+	  	  	  })
 	  	  })
 	  })
 	  .catch((err) => {

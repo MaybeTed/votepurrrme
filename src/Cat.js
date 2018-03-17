@@ -21,7 +21,8 @@ class Cat extends React.Component {
       	chances: 0
       }, 
       comments: [],
-      isFavorite: false
+      isFavorite: false,
+      likes: []
   	}
     this.addFavorite = this.addFavorite.bind(this);
     this.getCat = this.getCat.bind(this);
@@ -46,7 +47,8 @@ class Cat extends React.Component {
         user: this.props.auth.id,
         cat: this.state.cat.id
     }).then((favorite) => {
-        this.setState({ isFavorite: favorite.data.favorite })
+        // this.setState({ isFavorite: favorite.data.favorite })
+        this.getCat();
     })
   }
 
@@ -57,8 +59,9 @@ class Cat extends React.Component {
     }
     axios.get(`/api/getcat?id=${this.props.match.params.id}&user=${loggedin}`)
       .then((cat) => {
+        console.log('data response: ', cat)
         let isFavorite = cat.data.favorite && cat.data.favorite.length > 0 ? cat.data.favorite: false;
-        this.setState({ cat: cat.data.cat, comments: cat.data.comments, isFavorite })
+        this.setState({ cat: cat.data.cat, comments: cat.data.comments, isFavorite, likes: cat.data.likes })
       })
       .catch((err) => console.log('error: ', err))
   }
@@ -68,7 +71,8 @@ class Cat extends React.Component {
         user: this.props.auth.id,
         cat: this.state.cat.id
     }).then(() => {
-        this.setState({ isFavorite: false })
+        // this.setState({ isFavorite: false })
+        this.getCat();
     })
   }
 
@@ -88,9 +92,19 @@ class Cat extends React.Component {
 
   showFavoriteIcon() {
     if (this.state.isFavorite && this.state.isFavorite.length > 0 && this.state.isFavorite[0].cat_id === this.state.cat.id) {
-      return <img className="pointer" onClick={this.removeFavorite} src="http://clipart-library.com/images/gTe5anbEc.png" />
+      return (
+        <div className="likes-container">
+          <img className="pointer" onClick={this.removeFavorite} src="http://clipart-library.com/images/gTe5anbEc.png" />
+          <p>{this.state.likes.length}</p>
+        </div>
+      )
     } else {
-      return <img className="pointer" onClick={this.addFavorite} src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png" />
+      return (
+        <div className="likes-container">
+          <img className="pointer" onClick={this.addFavorite} src="https://freeiconshop.com/wp-content/uploads/edd/heart-outline.png" />
+          <p>{this.state.likes.length}</p>
+        </div>
+      )
     }
   }
 	
