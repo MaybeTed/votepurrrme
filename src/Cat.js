@@ -25,6 +25,7 @@ class Cat extends React.Component {
       likes: []
   	}
     this.addFavorite = this.addFavorite.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
     this.getCat = this.getCat.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
     this.showFavoriteIcon = this.showFavoriteIcon.bind(this);
@@ -50,6 +51,13 @@ class Cat extends React.Component {
         // this.setState({ isFavorite: favorite.data.favorite })
         this.getCat();
     })
+  }
+
+  deleteComment(commentid) {
+    axios.post('/api/deleteComment', {
+      comment: commentid
+    })
+    .then(() => this.getCat())
   }
 
   getCat() {
@@ -135,7 +143,7 @@ class Cat extends React.Component {
             <button onClick={this.submitComment} >Submit</button>
           </div>
           {this.state.comments.map((comment, index) => {
-            return <CatComment key={index} comment={comment} />
+            return <CatComment key={index} comment={comment} deleteComment={this.deleteComment} />
           })}
         </section>
 	    </div>

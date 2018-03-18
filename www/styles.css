@@ -628,6 +628,7 @@ a {
 	border-radius: 15px;
 	margin-top: 25px;
 	padding: 5px 10px;
+	position: relative;
 }
 
 .username {
@@ -635,6 +636,11 @@ a {
 	font-size: 1.1em;
 	color: #f44242;
 	cursor: pointer;
+}
+
+.delete-comment-catpage {
+	top: 5px;
+	right: 7px;
 }
 
 /* -------------------

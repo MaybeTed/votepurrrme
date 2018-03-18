@@ -44,21 +44,21 @@ class ProfileComments extends React.Component {
 			<div className="folder">
 			  {this.props.comments.map((comment, index) => {
 			  	return (
-			  	<div className="profile-comment-container">
-			  	<Link to={`/cat/${comment.cat_id}`}>
-			    <div className="mycomments-container" key={index}>
-			      <section className="profile-comment-info">
-			        <p>{this.changeTime(comment.created_at)}</p>
-			        <p className="profile-comment-message">{comment.message}</p>
-			      </section>
-			      <section className="profile-cat-img">
-			        <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${comment.url}`} />
-			      </section>
-			    </div>
-			    </Link>
-			    {this.props.auth && this.props.auth.id === comment.user_id ? 
-			    <p onClick={() => this.props.deleteComment(comment.id)} className="delete-comment-button">X</p>
-			    : null }
+			  	<div className="profile-comment-container" key={index}>
+			  	  <Link to={`/cat/${comment.cat_id}`}>
+			      <div className="mycomments-container">
+			        <section className="profile-comment-info">
+			          <p>{this.changeTime(comment.created_at)}</p>
+			          <p className="profile-comment-message">{comment.message}</p>
+			        </section>
+			        <section className="profile-cat-img">
+			          <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${comment.url}`} />
+			        </section>
+			      </div>
+			      </Link>
+			      {this.props.auth && this.props.auth.id === comment.user_id ? 
+			      <p onClick={() => this.props.deleteComment(comment.id)} className="delete-comment-button">X</p>
+			      : null }
 			    </div>
 			    )
 			  })}
