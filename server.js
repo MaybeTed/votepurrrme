@@ -214,6 +214,15 @@ app.post('/api/deleteComment', (req, res) => {
 	  .then(() => res.end())
 });
 
+app.post('/api/deleteUser', (req, res) => {
+	deletes.allRelationships(req.body.user)
+	  .then(() => deletes.userComments(req.body.user)
+	  	.then(() => deletes.user(req.body.user)
+	  		.then(() => res.end())
+	  	)
+	  )
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });
