@@ -30,6 +30,7 @@ class Profile extends React.Component {
       favorites: [],
       isFollowing: false
     }
+    this.deleteComment = this.deleteComment.bind(this);
     this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
     this.renderButtonText = this.renderButtonText.bind(this);
@@ -46,6 +47,13 @@ class Profile extends React.Component {
     if (this.state.person.id !== +this.props.match.params.id) {
       this.getPerson();
     }
+  }
+
+  deleteComment(commentid) {
+    axios.post('/api/deleteComment', {
+      comment: commentid
+    })
+    .then(() => this.getPerson())
   }
 
   follow() {
@@ -169,7 +177,7 @@ class Profile extends React.Component {
           {this.state.showFavorites ?
             <ProfileFavorites favorites={this.state.favorites} />
             :
-            <ProfileComments comments={this.state.comments} />
+            <ProfileComments comments={this.state.comments} deleteComment={this.deleteComment} />
           }
         </div>
       </div>

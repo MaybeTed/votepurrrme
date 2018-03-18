@@ -51,9 +51,11 @@ a {
 .nav > h3 {
 	font-family: "Lobster Two", times, serif;
 	font-size: 24px;
-	width: 200px;
+	font-weight: normal;
+	width: 160px;
 	padding: 14px;
 	margin-top: 0;
+	display: inline-block;
 }
 
 .nav-links {
@@ -74,6 +76,7 @@ a {
 
 .search-input {
 	height: 23px;
+	width: 123px;
 }
 
 .search-results-container {
@@ -152,6 +155,7 @@ a {
 }
 
 .add-to-favorites img {
+	display: block;
 	width: 30px;
 	height: 30px;
 	margin-top: 15px;
@@ -350,6 +354,25 @@ a {
 	text-align: center;
 }
 
+.profile-comment-container {
+	position: relative;
+}
+
+.delete-comment-button {
+	font-family: helvetica;
+	position: absolute;
+	top: 0;
+	right: -20px;
+	border: 1px solid black;
+	border-radius: 8px;
+	margin: 0;
+	padding: 3px;
+	height: 8px;
+	line-height: 8px;
+	font-size: 9px;
+	cursor: pointer;
+}
+
 
 /* -------------------
 ---- end Profile -----
@@ -440,11 +463,33 @@ a {
 /*	margin: auto;*/
     position: absolute;
     left: 25%;
+    -webkit-transform: -webkit-translateX(-50%);
     transform: translateX(-50%);
     bottom: 50px;
 	display: block;
 	height: 300px;
+	-webkit-animation: grow 5s linear forwards;
 	animation: grow 5s linear forwards, spin 2s linear forwards;
+}
+
+@-webkit-keyframes grow {
+	0% {
+		height: 0;
+		bottom: 175px;
+		left: 25%;
+	}
+
+	50% {
+		height: 150px;
+		bottom: 113px;
+		left: 0;
+	}
+
+	100% {
+		height: 300px;
+		bottom: 50px;
+		left: 25%;
+	}
 }
 
 @keyframes grow {
@@ -460,6 +505,15 @@ a {
 		bottom: 50px;
 /*		transform: translateX(-50%) rotate(-360deg);*/
 		left: 25%;
+	}
+}
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: -webkit-translateX(-50%) -webkit-rotate(0deg);
+	}
+	100% {
+		-webkit-transform: -webkit-translateX(-50%) -webkit-rotate(-360deg);
 	}
 }
 

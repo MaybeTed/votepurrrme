@@ -10,7 +10,12 @@ const follower = (users) => knex('followers')
   .andWhere('following', users.following)
   .del();
 
+const comment = (id) => knex('comments')
+  .where('id', id)
+  .del();
+
 module.exports = {
 	favorites,
 	follower,
+	comment,
 }

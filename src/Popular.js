@@ -11,9 +11,27 @@ function mapStateToProps(state) {
 }
 
 class Popular extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stop: false
+    }
+  }
+
   componentDidMount() {
-  	this.props.whichPage('Popular');
+    console.log('Mount running')
+    this.props.whichPage('Popular');
     Actions.fetchCats('rank');
+  }
+
+  componentDidUpdate() {
+    if (this.state.stop) { return }
+    console.log('componentDidUpdate running');
+    console.log('stop: ', this.state.stop)
+    if (!this.state.stop) {
+      this.setState({ stop: true }, () => Actions.fetchCats('rank'));
+    }
+    return;
   }
 
   render() {

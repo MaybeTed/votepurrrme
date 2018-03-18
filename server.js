@@ -209,6 +209,11 @@ app.post('/api/removeFavorite', (req, res) => {
 	  .then(() => res.end())
 });
 
+app.post('/api/deleteComment', (req, res) => {
+	deletes.comment(req.body.comment)
+	  .then(() => res.end())
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });
