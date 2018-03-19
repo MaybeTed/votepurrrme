@@ -5,6 +5,7 @@ import axios from 'axios';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import { connect } from 'react-redux';
 import Nav from './Nav';
+import Actions from './actions/index';
 
 function mapStateToProps(state) {
     return {

@@ -1,9 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+function mapStateToProps(state) {
+	return {
+		auth: state.auth
+	}
+}
 
 class ProfileComments extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+
+		}
 		this.changeTime = this.changeTime.bind(this);
 	}
 
@@ -33,17 +44,22 @@ class ProfileComments extends React.Component {
 			<div className="folder">
 			  {this.props.comments.map((comment, index) => {
 			  	return (
-			  	<Link to={`/cat/${comment.cat_id}`}>
-			    <div className="mycomments-container" key={index}>
-			      <section className="profile-comment-info">
-			        <p>{this.changeTime(comment.created_at)}</p>
-			        <p className="profile-comment-message">{comment.message}</p>
-			      </section>
-			      <section className="profile-cat-img">
-			        <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${comment.url}`} />
-			      </section>
+			  	<div className="profile-comment-container" key={index}>
+			  	  <Link to={`/cat/${comment.cat_id}`}>
+			      <div className="mycomments-container">
+			        <section className="profile-comment-info">
+			          <p>{this.changeTime(comment.created_at)}</p>
+			          <p className="profile-comment-message">{comment.message}</p>
+			        </section>
+			        <section className="profile-cat-img">
+			          <img src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${comment.url}`} />
+			        </section>
+			      </div>
+			      </Link>
+			      {this.props.auth && this.props.auth.id === comment.user_id ? 
+			      <p onClick={() => this.props.deleteComment(comment.id)} className="delete-comment-button">X</p>
+			      : null }
 			    </div>
-			    </Link>
 			    )
 			  })}
 			</div>
@@ -51,4 +67,4 @@ class ProfileComments extends React.Component {
 	}
 }
 
-export default ProfileComments;
+export default connect(mapStateToProps)(ProfileComments);

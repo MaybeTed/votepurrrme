@@ -30,6 +30,8 @@ class Profile extends React.Component {
       favorites: [],
       isFollowing: false
     }
+    this.deleteAccount = this.deleteAccount.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
     this.follow = this.follow.bind(this);
     this.getPerson = this.getPerson.bind(this);
     this.renderButtonText = this.renderButtonText.bind(this);
@@ -46,6 +48,21 @@ class Profile extends React.Component {
     if (this.state.person.id !== +this.props.match.params.id) {
       this.getPerson();
     }
+  }
+
+  deleteAccount() {
+    let confirmed = confirm("Are you sure you want to delete your account?");
+    if (confirmed) {
+      axios.get(`/api/deleteUser?id=${this.props.auth.id}`)
+        .then(() => window.location.href = "http://localhost:3000/logout")
+    }
+  }
+
+  deleteComment(commentid) {
+    axios.post('/api/deleteComment', {
+      comment: commentid
+    })
+    .then(() => this.getPerson())
   }
 
   follow() {
@@ -131,7 +148,10 @@ class Profile extends React.Component {
       <div className="profile">
         <div className="profile-left-container">
           <section className="profile-user">
-            <img src={person.photo} />
+            {this.props.auth && this.props.auth.id === person.id ?
+            <img className="delete-account-button" onClick={this.deleteAccount} src="https://cdn4.iconfinder.com/data/icons/basic-ui-circle/512/circle-02-512.png" />
+            : null }
+            <img className="profile-picture" src={person.photo} />
             <div className="profile-name-and-button">
               <h3>{person.name}</h3>
               {this.props.auth && this.props.auth.id !== person.id ?
@@ -169,7 +189,7 @@ class Profile extends React.Component {
           {this.state.showFavorites ?
             <ProfileFavorites favorites={this.state.favorites} />
             :
-            <ProfileComments comments={this.state.comments} />
+            <ProfileComments comments={this.state.comments} deleteComment={this.deleteComment} />
           }
         </div>
       </div>
