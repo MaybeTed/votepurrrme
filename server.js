@@ -230,7 +230,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });
 
-const server = app.listen(process.env.PORT || 3000, '127.0.0.1', function() {
+const server = app.listen(process.env.PORT || 3000, function() {
 	const host = server.address().address;
 	const port = server.address().port;
 	console.log('Votepurrrme listening at http://%s:%s', host, port);
