@@ -27,6 +27,10 @@ const allRelationships = (id) => knex('followers')
   .orWhere('follower', id)
   .del();
 
+const userFavorites = (id) => knex('favorites')
+  .where('user_id', id)
+  .del();
+
 module.exports = {
 	favorites,
 	follower,
@@ -34,4 +38,5 @@ module.exports = {
   user, 
   userComments,
   allRelationships,
+  userFavorites
 }

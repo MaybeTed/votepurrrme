@@ -102,7 +102,6 @@ app.get('/api/search', (req, res) => {
 });
 
 app.get('/api/getuser', (req, res) => {
-	console.log('req.query.id: ', req.query.id)
 	if (req.query.id) {
 		query.userid(req.query.id).then((user) => {
 			query.userComments(req.query.id).then((comments) => {
@@ -214,11 +213,15 @@ app.post('/api/deleteComment', (req, res) => {
 	  .then(() => res.end())
 });
 
-app.post('/api/deleteUser', (req, res) => {
-	deletes.allRelationships(req.body.user)
-	  .then(() => deletes.userComments(req.body.user)
-	  	.then(() => deletes.user(req.body.user)
-	  		.then(() => res.end())
+app.get('/api/deleteUser', (req, res) => {
+	deletes.allRelationships(req.query.id)
+	  .then(() => deletes.userComments(req.query.id)
+	  	.then(() => deletes.userFavorites(req.query.id)
+	  		.then(() => deletes.user(req.query.id)
+	  			.then(() => {
+	  				res.end();
+	  			})
+	  		)
 	  	)
 	  )
 });
