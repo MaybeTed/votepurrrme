@@ -26,8 +26,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GoogleStrategy({
-	clientID: config.GOOGLE_CLIENT_ID,
-	clientSecret: config.GOOGLE_CLIENT_SECRET,
+	clientID: process.env.GOOGLE_CLIENT_ID || config.GOOGLE_CLIENT_ID,
+	clientSecret: process.env.GOOGLE_CLIENT_SECRET || config.GOOGLE_CLIENT_SECRET,
 	callbackURL: "http://localhost:3000/auth/google/callback",
 	passReqToCallback: true
   },
@@ -230,8 +230,10 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/www/index.html'));
 });
 
-const server = app.listen(3000, '127.0.0.1',  function() {
+const server = app.listen(process.env.PORT || 3000, '127.0.0.1', function() {
 	const host = server.address().address;
 	const port = server.address().port;
-	console.log('Example app listening at http://%s:%s', host, port);
+	console.log('Votepurrrme listening at http://%s:%s', host, port);
 });
+
+
