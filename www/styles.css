@@ -135,12 +135,12 @@ a {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-around;
-	width: 700px;
+	width: 800px;
 	margin: auto;
 }
 
 .competition-cat img {
-	width: 280px;
+	width: 320px;
 	height: 500px;
 	cursor: pointer;
 	border: 1px solid black;
