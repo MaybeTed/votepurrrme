@@ -16,6 +16,11 @@ module.exports = {
       password: process.env.DATABASE_PASSWORD || config.password,
       database: process.env.DATABASE_NAME || 'votepurrrme',
     }
-  }
+  },
+
+  production: {
+    client: 'postgresql',
+    connection: process.env.NODE_ENV
+  },
 
 };
