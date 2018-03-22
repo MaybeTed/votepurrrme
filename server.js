@@ -1,9 +1,5 @@
-let config = {};
-try {
-	config = require('./config.js');
-} catch (err) {
-	console.log('can\'t find config file: ', err);
-}
+let config = process.env.NODE_ENV === 'production' ? null : require('./config.js');
+
 
 const express = require('express');
 const session = require('express-session');
