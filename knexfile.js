@@ -1,10 +1,10 @@
-let config;
+let config = process.env.NODE_ENV === 'production' ? null : require('./config.js')
 
-try {
-  config = require('./config.js');
-} catch (err) {
-  console.log('cant find config file: ', err);
-}
+// try {
+//   config = require('./config.js');
+// } catch (err) {
+//   console.log('cant find config file: ', err);
+// }
 
 module.exports = {
 
