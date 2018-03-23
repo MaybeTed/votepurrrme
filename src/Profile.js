@@ -54,7 +54,7 @@ class Profile extends React.Component {
     let confirmed = confirm("Are you sure you want to delete your account?");
     if (confirmed) {
       axios.get(`/api/deleteUser?id=${this.props.auth.id}`)
-        .then(() => window.location.href = "http://localhost:3000/logout")
+        .then(() => window.location.href = "http://votepurrrme.herokuapp.com/logout")
     }
   }
 
