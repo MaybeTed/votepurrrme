@@ -229,6 +229,7 @@ app.get('*', (req, res) => {
 const server = app.listen(process.env.PORT || 3000, function() {
 	const host = server.address().address;
 	const port = server.address().port;
+	console.log('process.env.PORT: ', process.env.PORT)
 	console.log('Votepurrrme listening at http://%s:%s', host, port);
 });
 
