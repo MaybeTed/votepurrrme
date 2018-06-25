@@ -480,7 +480,7 @@ a {
 	display: block;
 	height: 300px;
 	-webkit-animation: grow 5s linear forwards;
-	animation: grow 5s linear forwards, spin 2s linear forwards;
+	animation: grow 5s linear forwards;
 }
 
 @-webkit-keyframes grow {
