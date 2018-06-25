@@ -353,15 +353,17 @@ a {
 	padding: 10px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: flex-start;
 }
 
 .favorite-container img {
 	width: 150px;
 	height: 150px;
+	margin-right: 20px;
 }
 
 .favorite-container p {
+	margin-right: 20px;
 	text-align: center;
 }
 
