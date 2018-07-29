@@ -27,7 +27,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "knex": "^0.14.4",
-    "nodemon": "^1.14.11",
+    "nodemon": "^1.18.3",
     "passport": "^0.4.0",
     "passport-google-oauth2": "^0.1.6",
     "pg": "^7.4.1",
