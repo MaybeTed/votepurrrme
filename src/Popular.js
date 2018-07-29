@@ -19,9 +19,10 @@ class Popular extends React.Component {
   }
 
   componentDidMount() {
-    console.log('Mount running')
     this.props.whichPage('Popular');
     Actions.fetchCats('rank');
+    var trophy = document.getElementById('trophy');
+    trophy.classList.add('grow');
   }
 
   componentDidUpdate() {
@@ -50,7 +51,7 @@ class Popular extends React.Component {
                 <h4>Wins: {wins}</h4>
                 <h4>Chances: {chances}</h4>
                 <h4>Win percentage: {(wins/chances*100).toFixed(0) + '%'}</h4>
-                <img className="trophy" src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Trophy-and-Medals-PNG/Gold_Cup_Trophy_PNG_Clipart_Image.png?m=1507172109" />
+                <img className="trophy" id="trophy" src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Trophy-and-Medals-PNG/Gold_Cup_Trophy_PNG_Clipart_Image.png?m=1507172109" />
               </div>
               <img className="num1-cat-img" src={`https://res.cloudinary.com/dj2e9orvq/image/upload/${url}`} />
             </div></Link>
